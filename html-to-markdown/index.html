@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free URL & HTML to Markdown Converter — No Signup, No Limits | mdtohtml</title>
+<meta name="description" content="Free URL to Markdown and HTML to Markdown converter — paste any web page link and get clean Markdown instantly. No signup, no limits, no watermark. Runs in your browser.">
+<link rel="canonical" href="https://mdtohtml.app/html-to-markdown/">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta property="og:title" content="Free URL & HTML to Markdown Converter">
+<meta property="og:description" content="Paste a link, get clean Markdown. 100% free, no signup, no limits.">
+<meta property="og:url" content="https://mdtohtml.app/html-to-markdown/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mdtohtml.app">
+<meta property="og:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<meta name="twitter:image:alt" content="The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css?v=b81b327988">
+<script defer src="https://ccc-monitor.583079497.workers.dev/beacon.js" data-site="mdtohtml.app"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/turndown/7.1.2/turndown.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/turndown-plugin-gfm@1.0.2/dist/turndown-plugin-gfm.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "SoftwareApplication", "name": "Free URL & HTML to Markdown Converter — mdtohtml",
+      "url": "https://mdtohtml.app/html-to-markdown/", "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any (Web)", "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      "description": "Free converter: paste any web page URL and get clean Markdown. Also converts raw HTML. No signup, no limits." },
+    { "@type": "FAQPage", "mainEntity": [
+      { "@type": "Question", "name": "Is this HTML to Markdown converter free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free with no paid tier, no signup, no watermark and no usage limits." } },
+      { "@type": "Question", "name": "How do I convert a web page URL to Markdown?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Paste the link into the box and press Convert. The page's main content is extracted and turned into clean GitHub Flavored Markdown." } },
+      { "@type": "Question", "name": "Why can't some pages be converted?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Some sites block cross-origin fetching or require login. The browser extension converts any page you can see, with one click." } },
+      { "@type": "Question", "name": "Is it free and private?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Conversion runs in your browser. Direct fetches never touch our servers; a public fetch-helper is used only when a site blocks direct access." } }
+    ] }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="../"><span class="mark">HTML</span>mdtohtml</a>
+  <div class="nav-right">
+    <a class="nav-text-link" href="../">Markdown → HTML</a>
+    <a class="nav-text-link" href="../markdown-to-pdf/">Markdown → PDF</a>
+    <a class="nav-text-link" href="../html-to-pdf/">HTML → PDF</a>
+    <button class="mode-toggle" id="modeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+  </div>
+</nav>
+
+<section class="hero" style="padding-bottom:20px">
+  <h1>Any web page in. <em>Clean Markdown</em> out.</h1>
+  <p>Paste a link — article, docs, README, blog post — and get tidy GitHub Flavored Markdown. Free, no signup, no limits.</p>
+
+  <div class="urlbar">
+    <svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <input id="url" type="url" placeholder="Paste any URL — https://example.com/article" autocomplete="off" spellcheck="false">
+    <button class="btn btn-primary" id="goBtn" onclick="convertUrl()">Convert</button>
+  </div>
+  <div class="url-status" id="status"></div>
+
+  <div class="ext-card" id="extCard">
+    <div class="ext-icon">MD</div>
+    <div class="grow">
+      <div class="t">Browser extension — convert the page you're on</div>
+      <p>One click on any page, even behind logins. No fetching limits.</p>
+    </div>
+    <a class="btn btn-ghost" id="extBtn" href="../extension.zip" download>Download Beta</a>
+  </div>
+</section>
+
+<main class="app" id="result" style="display:none">
+  <div class="toolbar">
+    <span class="hint" id="pageTitle" style="margin-left:0"></span>
+    <div class="spacer"></div>
+    <span class="hint" id="stats"></span>
+  </div>
+  <div class="panes" style="grid-template-columns:1fr;min-height:380px">
+    <div class="pane">
+      <div class="pane-head">MARKDOWN</div>
+      <textarea id="output" spellcheck="false" aria-label="Markdown output"></textarea>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="copyMd()">Copy Markdown</button>
+    <button class="btn btn-ghost" onclick="downloadMd()">Download .md</button>
+    <button class="btn btn-ghost" onclick="sendToConverter()">Open in Markdown → HTML</button>
+    <span class="hint">Main content extracted · nav &amp; scripts stripped</span>
+  </div>
+</main>
+
+<details class="paste-html">
+  <summary>Have raw HTML instead? Paste or upload it here ↓</summary>
+  <div class="toolbar">
+    <button class="btn btn-ghost" onclick="document.getElementById('file').click()"><svg class="icon" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3-3 3 3"/></svg> Upload .html</button>
+    <input type="file" id="file" accept=".html,.htm,.txt" hidden>
+    <span class="drop-hint">…or paste / drag &amp; drop below</span>
+  </div>
+  <div class="panes" style="min-height:340px">
+    <div class="pane" id="inputPane">
+      <div class="pane-head">HTML</div>
+      <textarea id="input" spellcheck="false" aria-label="HTML input" placeholder="<h1>Paste HTML here…</h1>"></textarea>
+    </div>
+    <div class="pane">
+      <div class="pane-head">MARKDOWN</div>
+      <textarea id="pasteOutput" spellcheck="false" readonly style="color:var(--muted)"></textarea>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-ghost" onclick="copyPasteMd()">Copy Markdown</button>
+  </div>
+</details>
+
+<section class="content">
+  <h2>How to convert a web page to Markdown for free</h2>
+  <div class="steps">
+    <div class="step">
+      <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="h1t">
+        <title id="h1t">Paste any public web page URL into the converter bar</title>
+      
+        <!-- url bar -->
+        <rect x="12" y="40" width="276" height="48" rx="24"
+              fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+      
+        <!-- link icon -->
+        <g transform="translate(34,64) scale(.6) translate(-12,-12)" fill="none"
+           stroke="var(--muted,#666666)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+        </g>
+      
+        <!-- pasted url -->
+        <text x="52" y="68" font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="10">
+          <tspan fill="var(--muted,#666666)">https://</tspan><tspan fill="var(--text,#000000)">example.com</tspan><tspan fill="var(--muted,#666666)">/post</tspan>
+        </text>
+        <rect x="197" y="58" width="1.5" height="15" rx="0.75" fill="var(--brand,#D97757)"/>
+      
+        <!-- convert button -->
+        <rect x="208" y="50" width="70" height="28" rx="14" fill="var(--text,#000000)"/>
+        <text x="243" y="68" text-anchor="middle" font-family="'Geist', -apple-system, sans-serif"
+              font-size="10.5" font-weight="500" fill="var(--bg,#ffffff)">Convert</text>
+      
+        <!-- cursor -->
+        <path d="M247 78 l0 16 l4.2 -4.2 l3 6 l3 -1.4 l-3 -5.8 l5.8 -0.6 z"
+              fill="var(--text,#000000)" stroke="var(--panel,#ffffff)" stroke-width="1.2" stroke-linejoin="round"/>
+      
+        <!-- source hints -->
+        <g font-family="'Geist', -apple-system, sans-serif" font-size="9" fill="var(--muted,#666666)" text-anchor="middle">
+          <text x="66" y="112">Article</text>
+          <text x="128" y="112">Docs</text>
+          <text x="186" y="112">README</text>
+          <text x="248" y="112">Blog post</text>
+        </g>
+        <g fill="var(--brand,#D97757)" opacity=".55">
+          <circle cx="42" cy="109" r="2"/><circle cx="108" cy="109" r="2"/>
+          <circle cx="156" cy="109" r="2"/><circle cx="214" cy="109" r="2"/>
+        </g>
+      </svg>
+      <div class="n">01</div><div class="t">Paste a link</div>
+      <p>Any public article, documentation page, README or blog post.</p>
+    </div>
+    <div class="step">
+      <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="h2t">
+        <title id="h2t">Navigation, ads and scripts are stripped, leaving only the main content</title>
+      
+        <!-- source page -->
+        <rect x="10" y="14" width="142" height="104" rx="8"
+              fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+        <g fill="var(--muted,#666666)" opacity=".35">
+          <circle cx="23" cy="26" r="2.5"/><circle cx="32" cy="26" r="2.5"/><circle cx="41" cy="26" r="2.5"/>
+        </g>
+        <path d="M10 34 H152" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+      
+        <!-- stripped: nav -->
+        <g stroke="var(--muted,#666666)" stroke-width="1.2" opacity=".55" fill="none">
+          <rect x="18" y="40" width="126" height="10" rx="3" stroke-dasharray="3 3"/>
+          <path d="M132 42.5 l5 5 M137 42.5 l-5 5"/>
+        </g>
+      
+        <!-- kept: main content -->
+        <rect x="18" y="56" width="84" height="54" rx="5"
+              fill="var(--brand,#D97757)" fill-opacity=".07" stroke="var(--brand,#D97757)" stroke-width="1.5"/>
+        <rect x="26" y="63" width="38" height="5" rx="2.5" fill="var(--brand,#D97757)"/>
+        <g fill="var(--muted,#666666)" opacity=".4">
+          <rect x="26" y="74" width="66" height="4" rx="2"/>
+          <rect x="26" y="83" width="56" height="4" rx="2"/>
+          <rect x="26" y="92" width="66" height="4" rx="2"/>
+          <rect x="26" y="101" width="40" height="4" rx="2"/>
+        </g>
+      
+        <!-- stripped: ad + script -->
+        <g stroke="var(--muted,#666666)" stroke-width="1.2" opacity=".55" fill="none">
+          <rect x="108" y="56" width="36" height="30" rx="4" stroke-dasharray="3 3"/>
+          <path d="M123 68 l6 6 M129 68 l-6 6"/>
+          <rect x="108" y="92" width="36" height="18" rx="4" stroke-dasharray="3 3"/>
+          <path d="M123 98 l6 6 M129 98 l-6 6"/>
+        </g>
+      
+        <!-- arrow -->
+        <g stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-linecap="round" fill="none">
+          <path d="M160 66 H176"/>
+          <path d="M172 61 l5 5 l-5 5"/>
+        </g>
+      
+        <!-- clean markdown result -->
+        <rect x="188" y="24" width="100" height="84" rx="8"
+              fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+        <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="9">
+          <text x="200" y="44"><tspan fill="var(--brand,#D97757)">#</tspan><tspan fill="var(--text,#000000)"> Article title</tspan></text>
+        </g>
+        <g fill="var(--muted,#666666)" opacity=".35">
+          <rect x="200" y="54" width="76" height="4" rx="2"/>
+          <rect x="200" y="63" width="64" height="4" rx="2"/>
+          <rect x="200" y="72" width="76" height="4" rx="2"/>
+        </g>
+        <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="9">
+          <text x="200" y="90"><tspan fill="var(--brand,#D97757)">-</tspan><tspan fill="var(--muted,#666666)"> list item</tspan></text>
+          <text x="200" y="102"><tspan fill="var(--brand,#D97757)">|</tspan><tspan fill="var(--muted,#666666)"> table </tspan><tspan fill="var(--brand,#D97757)">|</tspan></text>
+        </g>
+      </svg>
+      <div class="n">02</div><div class="t">We extract the content</div>
+      <p>Navigation, ads and scripts are stripped — only the main content is converted.</p>
+    </div>
+    <div class="step">
+      <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="h3t">
+        <title id="h3t">Copy the Markdown, download a .md file, or send it to the HTML converter</title>
+      
+        <!-- markdown document -->
+        <rect x="12" y="20" width="92" height="92" rx="8"
+              fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+        <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="9">
+          <text x="24" y="40"><tspan fill="var(--brand,#D97757)">#</tspan><tspan fill="var(--text,#000000)"> Notes</tspan></text>
+          <text x="24" y="58"><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)">GFM</tspan><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)"> clean</tspan></text>
+          <text x="24" y="74"><tspan fill="var(--brand,#D97757)">-</tspan><tspan fill="var(--muted,#666666)"> tables kept</tspan></text>
+          <text x="24" y="90"><tspan fill="var(--brand,#D97757)">-</tspan><tspan fill="var(--muted,#666666)"> code kept</tspan></text>
+        </g>
+      
+        <!-- connectors -->
+        <g fill="none" stroke="var(--border,#eaeaea)" stroke-width="1.5">
+          <path d="M104 66 C 130 66, 134 32, 160 32"/>
+          <path d="M104 66 H160"/>
+          <path d="M104 66 C 130 66, 134 100, 160 100"/>
+        </g>
+      
+        <!-- output chips -->
+        <g stroke-linecap="round" stroke-linejoin="round">
+          <rect x="160" y="18" width="128" height="28" rx="14"
+                fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+          <g transform="translate(180,32) scale(.54) translate(-12,-12)" fill="none"
+             stroke="var(--brand,#D97757)" stroke-width="2.4">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </g>
+          <text x="194" y="36" font-family="'Geist', -apple-system, sans-serif" font-size="10"
+                fill="var(--text,#000000)">Copy Markdown</text>
+      
+          <rect x="160" y="52" width="128" height="28" rx="14"
+                fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+          <g transform="translate(180,66) scale(.54) translate(-12,-12)" fill="none"
+             stroke="var(--brand,#D97757)" stroke-width="2.4">
+            <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>
+          </g>
+          <text x="194" y="70" font-family="'Geist', -apple-system, sans-serif" font-size="10"
+                fill="var(--text,#000000)">Download .md</text>
+      
+          <rect x="160" y="86" width="128" height="28" rx="14"
+                fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+          <g transform="translate(180,100) scale(.54) translate(-12,-12)" fill="none"
+             stroke="var(--brand,#D97757)" stroke-width="2.4">
+            <path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/>
+          </g>
+          <text x="194" y="104" font-family="'Geist', -apple-system, sans-serif" font-size="10"
+                fill="var(--text,#000000)">Send to HTML</text>
+        </g>
+      </svg>
+      <div class="n">03</div><div class="t">Copy or download</div>
+      <p>Clean GFM markdown, ready for your notes, repo or AI prompt.</p>
+    </div>
+  </div>
+  <p style="margin-top:18px">Cleaning up unfamiliar syntax? Use the <a href="../markdown-cheatsheet/">Markdown cheat sheet with exact HTML output and common fixes</a> before publishing.</p>
+</section>
+
+<section class="content" id="faq">
+  <h2>Frequently asked questions</h2>
+  <details><summary>How do I convert a URL to Markdown?</summary><p>Paste the link in the box above and press Convert. The main content of the page is extracted and converted to GitHub Flavored Markdown — tables, lists, links, images and code included.</p></details>
+  <details><summary>Why do some pages fail to convert?</summary><p>Sites can block cross-origin fetching, sit behind logins, or render everything with JavaScript. For those, use the browser extension — it converts exactly the page you're looking at, with one click.</p></details>
+  <details><summary>Is it really free?</summary><p>Yes — 100% free with no paid tier, no signup, no credit card, no watermark and no daily limits. Every tool on mdtohtml.app works the same way.</p></details>
+  <details><summary>Is it private?</summary><p>Conversion happens in your browser. Pages are fetched directly when the site allows it; when it doesn't, a public fetch-helper relays the page — your converted markdown still never touches our servers.</p></details>
+  <details><summary>Can I convert raw HTML instead of a URL?</summary><p>Yes — expand "Have raw HTML instead?" above the FAQ, then paste or upload your HTML.</p></details>
+</section>
+
+<footer>
+  <span>© 2026 mdtohtml.app — your content never leaves your browser.</span>
+  <span>
+    <a href="../markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="../">Markdown to HTML</a><a href="../markdown-to-pdf/">Markdown to PDF</a><a href="../html-to-pdf/">HTML to PDF</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
+  </span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+
+  var td = new TurndownService({
+    headingStyle: 'atx', codeBlockStyle: 'fenced',
+    bulletListMarker: '-', emDelimiter: '*'
+  });
+  td.remove(['script', 'style', 'noscript']);
+  if (window.turndownPluginGfm && window.turndownPluginGfm.gfm) {
+    td.use(window.turndownPluginGfm.gfm);
+  }
+
+  var lastTitle = 'page';
+
+  /* ---------- URL → Markdown (the main flow) ---------- */
+  function setStatus(html) { $('status').innerHTML = html || ''; }
+
+  function extractMain(htmlText, baseUrl) {
+    var doc = new DOMParser().parseFromString(htmlText, 'text/html');
+    lastTitle = (doc.querySelector('title') && doc.querySelector('title').textContent.trim()) || 'page';
+    /* lazy-loaded images (WeChat, Medium, many CMSs): promote data-src to src */
+    doc.querySelectorAll('img').forEach(function (i) {
+      var ds = i.getAttribute('data-src') || i.getAttribute('data-original') || i.getAttribute('data-lazy-src');
+      if (ds && !i.getAttribute('src')) i.setAttribute('src', ds);
+    });
+    /* absolutize links & images */
+    doc.querySelectorAll('a[href]').forEach(function (a) {
+      try { a.setAttribute('href', new URL(a.getAttribute('href'), baseUrl).href); } catch (e) {}
+    });
+    doc.querySelectorAll('img[src]').forEach(function (i) {
+      try { i.setAttribute('src', new URL(i.getAttribute('src'), baseUrl).href); } catch (e) {}
+    });
+    /* strip chrome */
+    ['script','style','noscript','nav','header','footer','aside','iframe','form','svg','button'].forEach(function (sel) {
+      doc.querySelectorAll(sel).forEach(function (n) { n.remove(); });
+    });
+    /* site-specific content roots first (WeChat #js_content), then semantic tags */
+    var main = doc.querySelector('#js_content') || doc.querySelector('article') ||
+               doc.querySelector('main') || doc.querySelector('[role="main"]') || doc.body;
+    /* WeChat pages: title lives in #activity-name */
+    var wxTitle = doc.querySelector('#activity-name');
+    if (wxTitle && wxTitle.textContent.trim()) lastTitle = wxTitle.textContent.trim();
+    return main ? main.innerHTML : htmlText;
+  }
+
+  /* pages that anti-bot walls return instead of content */
+  function looksBlocked(html) {
+    return /环境异常|完成验证后即可继续访问|请在微信客户端打开|captcha|access denied|attention required|cf-challenge|verify you are a human/i.test(html) ||
+           html.replace(/<[^>]+>/g, '').trim().length < 120;
+  }
+
+  var HARD_SITES = /(^|\.)(mp\.weixin\.qq\.com|zhihu\.com|xiaohongshu\.com|twitter\.com|x\.com|facebook\.com|instagram\.com)$/i;
+
+  function fetchVia(u) {
+    return fetch(u).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.text();
+    });
+  }
+
+  function fetchPage(url) {
+    /* direct → allorigins → corsproxy; reject results that are anti-bot walls */
+    var attempts = [
+      function () { return fetchVia(url); },
+      function () { return fetchVia('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)); },
+      function () { return fetchVia('https://corsproxy.io/?url=' + encodeURIComponent(url)); }
+    ];
+    var i = 0;
+    function next(err) {
+      if (i >= attempts.length) return Promise.reject(err || new Error('unreachable'));
+      return attempts[i++]().then(function (html) {
+        if (looksBlocked(html)) return next(new Error('blocked'));
+        return html;
+      }, next);
+    }
+    return next();
+  }
+
+  function showWallHelp(host) {
+    var d = document.querySelector('details.paste-html');
+    if (d) d.open = true;
+    setStatus('<span class="warn">' + host + ' blocks automated fetching (login / anti-bot wall).</span><br>' +
+      'Workaround: open the article in your browser, save it with <b>⌘S / Ctrl+S</b> (HTML only), then upload it in the section below — conversion works perfectly. ' +
+      'Or download the browser extension above: one click on the page itself.');
+  }
+
+  window.convertUrl = function () {
+    var raw = $('url').value.trim();
+    if (!raw) { $('url').focus(); return; }
+    if (!/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
+    var url;
+    try { url = new URL(raw).href; } catch (e) { setStatus('<span class="warn">That doesn’t look like a valid URL.</span>'); return; }
+    var host = new URL(url).hostname;
+
+    /* known login/anti-bot walled sites: skip straight to guidance */
+    if (HARD_SITES.test(host)) { showWallHelp(host); return; }
+
+    $('goBtn').disabled = true;
+    setStatus('Fetching page…');
+    fetchPage(url).then(function (html) {
+      setStatus('Converting…');
+      var content = extractMain(html, url);
+      var md = td.turndown(content);
+      md = '# ' + lastTitle + '\n\n> Source: ' + url + '\n\n' + md;
+      $('output').value = md;
+      $('pageTitle').textContent = lastTitle;
+      $('stats').textContent = md.length.toLocaleString() + ' chars';
+      $('result').style.display = 'block';
+      setStatus('');
+      $('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }).catch(function () {
+      showWallHelp(host);
+    }).finally(function () {
+      $('goBtn').disabled = false;
+    });
+  };
+  $('url').addEventListener('keydown', function (e) { if (e.key === 'Enter') convertUrl(); });
+
+  /* ---------- secondary: raw HTML paste ---------- */
+  function renderPaste() {
+    var v = $('input').value || '';
+    var md = '';
+    try {
+      /* full saved pages (e.g. WeChat via Cmd+S) get main-content extraction too */
+      var src = /<(html|body)[\s>]|id="js_content"/i.test(v) ? extractMain(v, 'https://example.com/') : v;
+      md = v ? td.turndown(src) : '';
+    } catch (e) { md = 'Could not parse this HTML.'; }
+    $('pasteOutput').value = md;
+  }
+  $('input').addEventListener('input', renderPaste);
+  $('file').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    f.text().then(function (t) { $('input').value = t; renderPaste(); toast('Loaded ' + f.name); });
+    e.target.value = '';
+  });
+  var pane = $('inputPane');
+  ['dragover', 'dragenter'].forEach(function (ev) { pane.addEventListener(ev, function (e) { e.preventDefault(); pane.classList.add('dragover'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { pane.addEventListener(ev, function (e) { e.preventDefault(); pane.classList.remove('dragover'); }); });
+  pane.addEventListener('drop', function (e) {
+    var f = e.dataTransfer.files[0]; if (!f) return;
+    f.text().then(function (t) { $('input').value = t; renderPaste(); toast('Loaded ' + f.name); });
+  });
+
+  /* ---------- outputs ---------- */
+  window.copyMd = function () { navigator.clipboard.writeText($('output').value); toast('Markdown copied'); };
+  window.copyPasteMd = function () { navigator.clipboard.writeText($('pasteOutput').value); toast('Markdown copied'); };
+  window.downloadMd = function () {
+    var name = lastTitle.toLowerCase().replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-').slice(0, 60) || 'page';
+    var blob = new Blob([$('output').value], { type: 'text/markdown' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name + '.md'; a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+    toast('Downloaded ' + name + '.md');
+  };
+  window.sendToConverter = function () {
+    try { localStorage.setItem('mdh-draft', $('output').value); } catch (e) {}
+    location.href = '../';
+  };
+
+  /* ---------- chrome ---------- */
+  var tt;
+  function toast(msg) {
+    var t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(tt); tt = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+  window.toast = toast;
+  $('modeToggle').onclick = function () {
+    var el = document.documentElement;
+    el.dataset.theme = el.dataset.theme === 'dark' ? '' : 'dark';
+    try { localStorage.setItem('mdh-mode', el.dataset.theme || 'light'); } catch (e) {}
+  };
+  try { if (localStorage.getItem('mdh-mode') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}
+
+  /* ?url= support (lets the extension / other pages deep-link) */
+  var q = new URLSearchParams(location.search).get('url');
+  if (q) { $('url').value = q; convertUrl(); }
+})();
+</script>
+</body>
+</html>

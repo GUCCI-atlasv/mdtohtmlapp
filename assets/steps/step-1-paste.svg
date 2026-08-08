@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="s1t">
+  <title id="s1t">Paste markdown into the editor, or drop a .md file</title>
+
+  <!-- editor / drop zone -->
+  <rect x="10" y="16" width="150" height="104" rx="9"
+        fill="var(--panel,#ffffff)" stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <!-- markdown sample: syntax chars in accent, content muted -->
+  <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="11">
+    <text x="24" y="43"><tspan fill="var(--brand,#D97757)">#</tspan><tspan fill="var(--muted,#666666)"> Release notes</tspan></text>
+    <text x="24" y="63"><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)">v2.1</tspan><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)"> shipped</tspan></text>
+    <text x="24" y="83"><tspan fill="var(--brand,#D97757)">-</tspan><tspan fill="var(--muted,#666666)"> Faster export</tspan></text>
+    <text x="24" y="103"><tspan fill="var(--brand,#D97757)">|</tspan><tspan fill="var(--muted,#666666)"> Metric </tspan><tspan fill="var(--brand,#D97757)">|</tspan><tspan fill="var(--muted,#666666)"> Q3 </tspan><tspan fill="var(--brand,#D97757)">|</tspan></text>
+  </g>
+
+  <!-- drop arrow -->
+  <g stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-linecap="round" fill="none">
+    <path d="M196 68 H176" stroke-dasharray="4 4"/>
+    <path d="M174 63 l-6 5 l6 5"/>
+  </g>
+
+  <!-- .md file chip -->
+  <g transform="rotate(-7 233 68)">
+    <path d="M209 30 h38 l20 20 v47 a9 9 0 0 1 -9 9 h-49 a9 9 0 0 1 -9 -9 v-58 a9 9 0 0 1 9 -9 z"
+          fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+    <path d="M247 30 v20 h20" fill="none" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+    <rect x="212" y="60" width="40" height="3" rx="1.5" fill="var(--muted,#666666)" opacity=".3"/>
+    <rect x="212" y="68" width="30" height="3" rx="1.5" fill="var(--muted,#666666)" opacity=".3"/>
+    <text x="233" y="92" text-anchor="middle" font-family="'Geist Mono', ui-monospace, Menlo, monospace"
+          font-size="12" font-weight="600" fill="var(--brand,#D97757)">.md</text>
+  </g>
+</svg>

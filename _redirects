@@ -1,0 +1,11 @@
+# Legacy paths → canonical directory URLs (backup; middleware also handles these)
+/terms.html    /terms/     301
+/privacy.html  /privacy/   301
+/terms         /terms/     301
+/privacy       /privacy/   301
+/markdown-cheat-sheet   /markdown-cheatsheet/   301
+/markdown-cheat-sheet/  /markdown-cheatsheet/   301
+/cheatsheet             /markdown-cheatsheet/   301
+/cheatsheet/            /markdown-cheatsheet/   301
+/markdown-syntax        /markdown-cheatsheet/   301
+/markdown-syntax/       /markdown-cheatsheet/   301

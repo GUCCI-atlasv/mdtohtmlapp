@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>可靠导出测试</title>
+</head>
+<body>
+  <nav>导航内容不应被导出</nav>
+  <article itemprop="articleBody">
+    <h1>可靠导出测试</h1>
+    <p>这是用于浏览器级验证的正文。它包含<strong>粗体</strong>、<em>强调</em>和<a href="/docs">相对链接</a>。</p>
+    <p>第二段用于确保正文识别达到长度阈值。扩展应保留内容结构，同时删除导航、脚本、广告和不相关的页面元素。</p>
+    <h2>结构测试</h2>
+    <ul><li>第一项<ul><li>嵌套项</li></ul></li><li><input type="checkbox" checked> 已完成任务</li></ul>
+    <table><tr><th>名称</th><th>状态</th></tr><tr><td>提取</td><td>可靠</td></tr></table>
+    <pre><code class="language-js">const value = `code`;</code></pre>
+    <p>最后一段补足文章长度，并验证生成结果不会因为页面导航中的链接密度而选择错误的节点。</p>
+  </article>
+  <script>
+    globalThis.browser = { runtime: { onMessage: { addListener: function (listener) { globalThis.__listener = listener; } } } };
+  </script>
+  <script src="../extension/vendor/readability.js"></script>
+  <script src="../extension/content.js"></script>
+  <script>
+    var output = document.createElement("pre");
+    output.id = "result";
+    document.body.appendChild(output);
+    __listener({ type:"MDHTML_PREPARE", scope:"main", metadata:true, frontmatter:true }, {}, function (result) {
+      var checks = [
+        result && result.ok,
+        /^---\ntitle:/.test(result.markdown),
+        result.markdown.includes("## 结构测试"),
+        result.markdown.includes("  - 嵌套项"),
+        result.markdown.includes("- [x] 已完成任务"),
+        result.markdown.includes("| 名称 | 状态 |"),
+        result.markdown.includes("```js"),
+        result.markdown.includes("http://127.0.0.1:8765/docs"),
+        !result.markdown.includes("导航内容不应被导出")
+      ];
+      document.querySelector("article").removeAttribute("itemprop");
+      __listener({ type:"MDHTML_PREPARE", scope:"main", metadata:false, frontmatter:false }, {}, function (readabilityResult) {
+        var readabilityChecks = [
+          readabilityResult && readabilityResult.ok,
+          readabilityResult.quality === "Readability 正文",
+          readabilityResult.markdown.includes("## 结构测试"),
+          !readabilityResult.markdown.includes("导航内容不应被导出")
+        ];
+        var savedReadability = globalThis.Readability;
+        globalThis.Readability = undefined;
+        __listener({ type:"MDHTML_PREPARE", scope:"main", metadata:false }, {}, function (fallbackResult) {
+          globalThis.Readability = savedReadability;
+          var fallbackChecks = [
+            fallbackResult && fallbackResult.ok,
+            fallbackResult.quality === "启发式正文",
+            fallbackResult.markdown.includes("## 结构测试")
+          ];
+
+          var selection = getSelection();
+          var range = document.createRange();
+          range.selectNode(document.querySelector("article h2"));
+          selection.removeAllRanges();
+          selection.addRange(range);
+          __listener({ type:"MDHTML_PREPARE", scope:"selection", metadata:false }, {}, function (selectionResult) {
+            var selectionChecks = [
+              selectionResult && selectionResult.ok,
+              selectionResult.quality === "当前选区",
+              selectionResult.markdown.includes("## 结构测试")
+            ];
+            selection.removeAllRanges();
+
+            __listener({ type:"MDHTML_START_PICKER" }, {}, function () {});
+            var paragraph = document.querySelector("article p");
+            var rect = paragraph.getBoundingClientRect();
+            var eventInit = { bubbles:true, cancelable:true, clientX:rect.left + 4, clientY:rect.top + 4 };
+            document.dispatchEvent(new MouseEvent("mousemove", eventInit));
+            document.dispatchEvent(new MouseEvent("click", eventInit));
+            __listener({ type:"MDHTML_INSPECT" }, {}, function (inspectResult) {
+              __listener({ type:"MDHTML_PREPARE", scope:"picked", metadata:false }, {}, function (pickedResult) {
+                var pickerChecks = [
+                  inspectResult && inspectResult.hasPicked,
+                  pickedResult && pickedResult.ok,
+                  pickedResult.quality === "手动选定",
+                  pickedResult.markdown.includes("这是用于浏览器级验证的正文")
+                ];
+                var allChecks = checks.concat(readabilityChecks, fallbackChecks, selectionChecks, pickerChecks);
+                document.documentElement.dataset.pass = allChecks.every(Boolean) ? "true" : "false";
+                output.textContent = JSON.stringify({ checks:checks, readabilityChecks:readabilityChecks, fallbackChecks:fallbackChecks, fallbackQuality:fallbackResult.quality, selectionChecks:selectionChecks, pickerChecks:pickerChecks }, null, 2);
+              });
+            });
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

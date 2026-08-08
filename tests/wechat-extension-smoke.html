@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>页面标题后缀</title>
+  <meta property="og:site_name" content="微信公众平台">
+</head>
+<body>
+  <h1 id="activity-name">微信测试标题</h1>
+  <span id="js_name">极客之家</span>
+  <span id="publish_time">2026-08-01 12:00</span>
+  <div id="js_content">
+    <p>这是微信文章的开头正文，用于验证扩展是否能够保留主要段落、图片、标题和代码结构。</p>
+    <p>第二段补充足够的正文长度，确保测试覆盖微信公众号的专用正文识别路径，而不是退回到整页内容。</p>
+    <img alt="架构图" src="data:image/svg+xml,%3Csvg%20width='1px'%20height='1px'%20viewBox='0%200%201%201'%3E%3C/svg%3E" data-src="https://mmbiz.qpic.cn/test/640?wx_fmt=png">
+    <h1>功能详情</h1>
+    <h3>K 线预测</h3>
+    <p>正文继续，下面分别测试微信代码中的 BR 换行，以及使用块级节点渲染的高亮代码。</p>
+    <pre><code>git&nbsp;clone&nbsp;https://github.com/example/project.git<br>cd project<br>pip install -r requirements.txt</code></pre>
+    <section class="code-snippet__fix"><div>from model import Kronos</div><div>import pandas as pd</div><div>print(pd.__version__)</div></section>
+    <img alt="无效占位图" src="data:image/svg+xml,%3Csvg%20width='1px'%20height='1px'%20viewBox='0%200%201%201'%3E%3C/svg%3E">
+    <p>这是正文结尾，在推广信息出现之前应当被完整保留，避免清理规则过度删除真实文章内容。</p>
+    <p>*****点击下方卡片，关注极客之家*****</p>
+    <p>这段公众号推广内容在干净正文模式下不应导出。</p>
+  </div>
+  <script>
+    globalThis.browser = { runtime: { onMessage: { addListener: function (listener) { globalThis.__listener = listener; } } } };
+  </script>
+  <script src="../extension/vendor/readability.js"></script>
+  <script src="../extension/content.js"></script>
+  <script>
+    var output = document.createElement("pre");
+    output.id = "result";
+    document.body.appendChild(output);
+    __listener({ type:"MDHTML_PREPARE", scope:"main", metadata:true, frontmatter:true, cleanContent:true }, {}, function (result) {
+      var checks = [
+        result && result.ok,
+        result.markdown.includes('title: "微信测试标题"'),
+        result.markdown.includes('author: "极客之家"'),
+        result.markdown.includes('site: "微信公众平台"'),
+        result.markdown.includes('published_at: "2026-08-01 12:00"'),
+        result.markdown.includes("# 微信测试标题"),
+        result.markdown.includes("## 功能详情"),
+        result.markdown.includes("### K 线预测"),
+        result.markdown.includes("https://mmbiz.qpic.cn/test/640?wx_fmt=png"),
+        !result.markdown.includes("data:image"),
+        result.imageTotal === 2 && result.imageValid === 1 && result.imageInvalid === 1,
+        result.codeBlocks === 2,
+        result.markdown.includes("```bash\ngit clone https://github.com/example/project.git\ncd project\npip install -r requirements.txt"),
+        result.markdown.includes("```python\nfrom model import Kronos\nimport pandas as pd\nprint(pd.__version__)"),
+        result.markdown.includes("这是正文结尾"),
+        !result.markdown.includes("点击下方卡片"),
+        !result.markdown.includes("这段公众号推广内容")
+      ];
+      __listener({ type:"MDHTML_EXPORT", format:"html", scope:"main", metadata:true, cleanContent:true }, {}, function (htmlResult) {
+        var htmlChecks = [
+          htmlResult && htmlResult.ok,
+          htmlResult.filename === "微信测试标题.html",
+          htmlResult.mime === "text/html",
+          htmlResult.content.includes("<!doctype html>"),
+          htmlResult.content.includes("作者：极客之家"),
+          htmlResult.content.includes("来源：微信公众平台"),
+          htmlResult.content.includes("发布：2026-08-01 12:00"),
+          htmlResult.content.includes("https://mmbiz.qpic.cn/test/640?wx_fmt=png"),
+          !htmlResult.content.includes("data:image"),
+          !htmlResult.content.includes("点击下方卡片")
+        ];
+        var allChecks = checks.concat(htmlChecks);
+        document.documentElement.dataset.pass = allChecks.every(Boolean) ? "true" : "false";
+        output.textContent = JSON.stringify({ checks:checks, htmlChecks:htmlChecks, result:result }, null, 2);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>保存网页</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="mark">HTML</span><span>保存网页</span></div>
+    <span class="private">仅本地处理</span>
+  </header>
+
+  <main>
+    <section class="page-card">
+      <div class="favicon-wrap"><img id="favicon" alt="" hidden><span id="fallbackIcon">W</span></div>
+      <div class="page-copy">
+        <div class="page-title" id="pageTitle">正在读取当前页面…</div>
+        <div class="page-url" id="pageUrl"></div>
+      </div>
+    </section>
+
+    <div class="field-row">
+      <label class="field-label" for="filename">文件名</label>
+      <span class="quality" id="quality"></span>
+    </div>
+    <div class="filename-row">
+      <input id="filename" class="text-input" spellcheck="false" aria-label="文件名">
+      <span class="extension-label">.html</span>
+    </div>
+
+    <div class="field-row scope-label">
+      <label class="field-label" for="scope">保存范围</label>
+      <button class="text-button" id="pickContent">在页面中选择</button>
+    </div>
+    <div class="select-wrap">
+      <select id="scope">
+        <option value="main">智能正文（推荐）</option>
+        <option value="page">完整网页</option>
+        <option value="selection" id="selectionOption">当前选中内容</option>
+        <option value="picked" id="pickedOption">手动选定区域</option>
+      </select>
+    </div>
+
+    <div class="options-row">
+      <label class="compact-check"><input type="checkbox" id="metadata" checked><span>来源信息</span></label>
+      <label class="compact-check"><input type="checkbox" id="cleanContent" checked><span>清理推广</span></label>
+    </div>
+
+    <div class="export-summary" id="exportSummary" aria-live="polite">
+      <span class="summary-icon">HTML</span>
+      <div>
+        <b id="summaryTitle">正在整理网页内容…</b>
+        <small id="stats">请稍候</small>
+      </div>
+    </div>
+
+    <button class="html-primary" id="saveHtml">
+      <span class="file-icon">HTML↓</span>
+      <span><b>保存为 HTML</b><small>下载干净、可直接打开的网页文件</small></span>
+    </button>
+
+    <div class="secondary-actions">
+      <button class="secondary-button" id="saveMarkdown">另存为 Markdown</button>
+      <button class="secondary-button" id="copyMarkdown">复制 Markdown</button>
+    </div>
+
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </main>
+
+  <footer><span>内容不会上传到服务器</span><span id="shortcut">⌃⇧M 快速保存 HTML</span></footer>
+  <script src="popup.js"></script>
+</body>
+</html>

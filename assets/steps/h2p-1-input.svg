@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="p1t">
+  <title id="p1t">Fetch a public page by URL, or paste and upload raw HTML</title>
+
+  <!-- url bar -->
+  <rect x="12" y="16" width="276" height="38" rx="19"
+        fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+  <g transform="translate(32,35) scale(.54) translate(-12,-12)" fill="none"
+     stroke="var(--muted,#666666)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+  </g>
+  <text x="48" y="39" font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="10">
+    <tspan fill="var(--muted,#666666)">https://</tspan><tspan fill="var(--text,#000000)">example.com</tspan><tspan fill="var(--muted,#666666)">/page</tspan>
+  </text>
+  <rect x="212" y="22" width="66" height="26" rx="13" fill="var(--text,#000000)"/>
+  <text x="245" y="39" text-anchor="middle" font-family="'Geist', -apple-system, sans-serif"
+        font-size="10" font-weight="500" fill="var(--bg,#ffffff)">Fetch</text>
+
+  <!-- or divider -->
+  <g stroke="var(--border,#eaeaea)" stroke-width="1.5">
+    <path d="M12 70 H130"/><path d="M170 70 H288"/>
+  </g>
+  <text x="150" y="74" text-anchor="middle" font-family="'Geist', -apple-system, sans-serif"
+        font-size="10" fill="var(--muted,#666666)">or</text>
+
+  <!-- paste / upload html -->
+  <rect x="12" y="86" width="276" height="34" rx="8"
+        fill="var(--panel,#ffffff)" stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="10">
+    <text x="28" y="107"><tspan fill="var(--brand,#D97757)">&lt;h1&gt;</tspan><tspan fill="var(--muted,#666666)">Saved page</tspan><tspan fill="var(--brand,#D97757)">&lt;/h1&gt;</tspan></text>
+  </g>
+  <g transform="translate(262,103) scale(.54) translate(-12,-12)" fill="none"
+     stroke="var(--brand,#D97757)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 21h14"/>
+  </g>
+</svg>

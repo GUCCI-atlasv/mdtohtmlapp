@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shared page — mdtohtml</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css?v=b81b327988">
+<script defer src="https://ccc-monitor.583079497.workers.dev/beacon.js" data-site="mdtohtml.app"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.13/dist/purify.min.js"></script>
+</head>
+<body>
+
+<div class="viewer-bar">
+  <a class="logo" href="../"><span class="mark">HTML</span>mdtohtml</a>
+  <div class="right">
+    <span style="color:var(--muted)">Shared page · rendered in your browser, nothing was uploaded</span>
+    <a href="../">Create your own →</a>
+  </div>
+</div>
+
+<iframe id="viewerFrame" title="Shared document" sandbox="allow-same-origin"></iframe>
+
+<div class="viewer-error" id="viewerError" style="display:none">
+  <h2>Nothing to show</h2>
+  <p>This link doesn't contain a document, or it was truncated when copied.
+     Ask the sender to copy the <b>full</b> link, or <a href="../" style="color:var(--brand)">create your own page</a>.</p>
+</div>
+
+<script src="../assets/render.js?v=8bcda7e1dc"></script>
+<script>
+(function () {
+  var payload = MDH.decodeShare(location.hash);
+  var frame = document.getElementById('viewerFrame');
+  var err = document.getElementById('viewerError');
+  if (!payload || !payload.md) {
+    frame.style.display = 'none';
+    err.style.display = 'block';
+    return;
+  }
+  var doc = MDH.buildFullDoc(payload.md, { theme: payload.t, mode: payload.m });
+  frame.srcdoc = doc;
+  var r = MDH.renderMarkdown(payload.md);
+  if (r.title) document.title = r.title + ' — mdtohtml';
+  /* re-render if the hash changes (e.g. user pastes another link) */
+  window.addEventListener('hashchange', function () { location.reload(); });
+})();
+</script>
+</body>
+</html>

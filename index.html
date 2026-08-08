@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Markdown to HTML Converter — No Signup, No Limits | mdtohtml</title>
+<meta name="description" content="Free Markdown to HTML converter — convert MD to a beautiful, self-contained, shareable HTML page. 100% free, no signup, no limits, no watermark. Runs in your browser, nothing uploaded.">
+<link rel="canonical" href="https://mdtohtml.app/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Free Markdown to HTML Converter — a beautiful page out">
+<meta property="og:description" content="100% free, no signup, no limits. Not just HTML tags — a self-contained, themed, ready-to-share web page.">
+<meta property="og:url" content="https://mdtohtml.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mdtohtml.app">
+<meta property="og:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<meta name="twitter:image:alt" content="The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=b81b327988">
+<script defer src="https://ccc-monitor.583079497.workers.dev/beacon.js" data-site="mdtohtml.app"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.13/dist/purify.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "mdtohtml — Free Markdown to HTML Converter",
+      "url": "https://mdtohtml.app/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any (Web)",
+      "isAccessibleForFree": true,
+      "image": "https://mdtohtml.app/assets/og-card.jpg",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      "description": "Free Markdown to HTML converter — no signup, no limits, no watermark. Turns Markdown into a beautiful, self-contained, shareable HTML page entirely in your browser."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is this Markdown to HTML converter really free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free with no paid tier. Unlimited conversions, all themes, downloads and share links, with no signup, no credit card, no watermark and no usage limits." } },
+        { "@type": "Question", "name": "Is my markdown uploaded to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Conversion happens entirely in your browser. Share links compress your document into the URL itself, so nothing is uploaded." } },
+        { "@type": "Question", "name": "What's the difference between the HTML fragment and the styled page?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The fragment is clean semantic HTML for pasting into a CMS or email. The styled page is a complete self-contained HTML document with inline CSS, table of contents and dark mode — ready to open or share." } },
+        { "@type": "Question", "name": "Does it support GitHub Flavored Markdown?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — tables, task lists, strikethrough, fenced code blocks and autolinks are supported." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="./"><span class="mark">HTML</span>mdtohtml</a>
+  <div class="nav-right">
+    <a class="nav-text-link" href="html-to-markdown/">HTML → Markdown</a>
+    <a class="nav-text-link" href="markdown-to-pdf/">Markdown → PDF</a>
+    <a class="nav-text-link" href="html-to-pdf/">HTML → PDF</a>
+    <a class="nav-text-link" href="#faq">FAQ</a>
+    <a class="btn btn-ghost nav-extension" href="extension.zip?v=1.3.0" download>Browser Extension</a>
+    <button class="mode-toggle" id="modeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Markdown in. <em>A beautiful page</em> out.</h1>
+  <p>Not just HTML tags — a self-contained, themed, ready-to-share web page. Paste or drop a .md file. No signup, no server.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary hero-extension" href="extension.zip?v=1.3.0" download><span aria-hidden="true">↓</span> Browser Extension</a>
+    <span>Chrome · Edge · Brave</span>
+  </div>
+  <div class="privacy-badge"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Your markdown never leaves your browser</div>
+</section>
+
+<main class="app" id="converter">
+  <div class="toolbar">
+    <button class="btn btn-ghost" onclick="document.getElementById('file').click()"><svg class="icon" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3-3 3 3"/></svg> Upload .md</button>
+    <input type="file" id="file" accept=".md,.markdown,.txt" hidden>
+    <button class="btn btn-ghost" onclick="importUrl()"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Import URL</button>
+    <select id="theme" title="Output theme"></select>
+    <span class="drop-hint">…or drag &amp; drop onto the editor</span>
+    <div class="spacer"></div>
+    <span class="hint" id="stats"></span>
+  </div>
+
+  <div class="panes">
+    <div class="pane" id="inputPane">
+      <div class="pane-head">MARKDOWN</div>
+      <textarea id="input" spellcheck="false" aria-label="Markdown input"></textarea>
+    </div>
+    <div class="pane">
+      <div class="pane-head">
+        <button class="tab active" id="tabPreview" onclick="showTab('preview')">Preview</button>
+        <button class="tab" id="tabHtml" onclick="showTab('html')">HTML</button>
+      </div>
+      <iframe id="previewFrame" title="Rendered preview" sandbox="allow-same-origin"></iframe>
+      <div id="htmlcode"></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="share()"><svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Share as temp page</button>
+    <button class="btn btn-ghost" onclick="copyHtml()">Copy HTML</button>
+    <button class="btn btn-ghost" onclick="copyFullPage()">Copy styled page</button>
+    <button class="btn btn-ghost" onclick="downloadHtml()">Download .html</button>
+    <button class="btn btn-ghost" onclick="previewFull()">Open full page</button>
+    <span class="hint">Styled page = full document with inline CSS · Copy HTML = clean fragment</span>
+  </div>
+</main>
+
+<section class="syntax-strip" aria-labelledby="syntax-strip-title">
+  <div class="syntax-strip-head">
+    <div><span class="syntax-strip-label">QUICK REFERENCE</span><h2 id="syntax-strip-title">Markdown syntax at a glance</h2></div>
+    <a class="btn btn-ghost" href="markdown-cheatsheet/">Open the complete cheat sheet →</a>
+  </div>
+  <div class="syntax-strip-grid">
+    <span><code># Heading</code><small>Heading</small></span>
+    <span><code>**bold**</code><small>Bold</small></span>
+    <span><code>*italic*</code><small>Italic</small></span>
+    <span><code>[text](url)</code><small>Link</small></span>
+    <span><code>![alt](src)</code><small>Image</small></span>
+    <span><code>- item</code><small>List</small></span>
+    <span><code>`code`</code><small>Code</small></span>
+    <span><code>| a | b |</code><small>GFM table</small></span>
+  </div>
+</section>
+
+<!-- Share modal -->
+<div class="overlay" id="shareOverlay" onclick="if(event.target===this)closeShare()">
+  <div class="modal">
+    <button class="close-x" onclick="closeShare()" aria-label="Close"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <h3>Share as a temporary page</h3>
+    <p class="sub">Anyone with the link sees your rendered page.</p>
+
+    <div class="share-opt">
+      <div class="row"><span class="title">Instant link</span><span class="badge free">FREE · NO SIGNUP</span></div>
+      <p id="freeNote">Your document is compressed into the link itself — nothing is uploaded. Works forever.</p>
+      <div class="linkbox">
+        <input id="freeLink" readonly value="">
+        <button class="btn btn-primary" id="freeCopyBtn" onclick="copyLink()">Copy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- How to -->
+<section class="content" id="how">
+  <h2>How to convert Markdown to HTML for free</h2>
+  <div class="steps">
+    <div class="step">
+      <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="s1t">
+        <title id="s1t">Paste markdown into the editor, or drop a .md file</title>
+      
+        <!-- editor / drop zone -->
+        <rect x="10" y="16" width="150" height="104" rx="9"
+              fill="var(--panel,#ffffff)" stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-dasharray="6 5"/>
+      
+        <!-- markdown sample: syntax chars in accent, content muted -->
+        <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="11">
+          <text x="24" y="43"><tspan fill="var(--brand,#D97757)">#</tspan><tspan fill="var(--muted,#666666)"> Release notes</tspan></text>
+          <text x="24" y="63"><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)">v2.1</tspan><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)"> shipped</tspan></text>
+          <text x="24" y="83"><tspan fill="var(--brand,#D97757)">-</tspan><tspan fill="var(--muted,#666666)"> Faster export</tspan></text>
+          <text x="24" y="103"><tspan fill="var(--brand,#D97757)">|</tspan><tspan fill="var(--muted,#666666)"> Metric </tspan><tspan fill="var(--brand,#D97757)">|</tspan><tspan fill="var(--muted,#666666)"> Q3 </tspan><tspan fill="var(--brand,#D97757)">|</tspan></text>
+        </g>
+      
+        <!-- drop arrow -->
+        <g stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-linecap="round" fill="none">
+          <path d="M196 68 H176" stroke-dasharray="4 4"/>
+          <path d="M174 63 l-6 5 l6 5"/>
+        </g>
+      
+        <!-- .md file chip -->
+        <g transform="rotate(-7 233 68)">
+          <path d="M209 30 h38 l20 20 v47 a9 9 0 0 1 -9 9 h-49 a9 9 0 0 1 -9 -9 v-58 a9 9 0 0 1 9 -9 z"
+                fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+          <path d="M247 30 v20 h20" fill="none" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+          <rect x="212" y="60" width="40" height="3" rx="1.5" fill="var(--muted,#666666)" opacity=".3"/>
+          <rect x="212" y="68" width="30" height="3" rx="1.5" fill="var(--muted,#666666)" opacity=".3"/>
+          <text x="233" y="92" text-anchor="middle" font-family="'Geist Mono', ui-monospace, Menlo, monospace"
+                font-size="12" font-weight="600" fill="var(--brand,#D97757)">.md</text>
+        </g>
+      </svg>
+      <div class="n">01</div><div class="t">Paste or drop</div>
+      <p>Paste markdown from ChatGPT, Claude or your editor — or drop a .md file.</p>
+    </div>
+    <div class="step">
+      <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="s2t">
+        <title id="s2t">Pick one of four themes, in light or dark mode</title>
+      
+        <!-- card A — selected -->
+        <rect x="16" y="14" width="80" height="100" rx="8"
+              fill="var(--panel,#ffffff)" stroke="var(--brand,#D97757)" stroke-width="2"/>
+        <rect x="28" y="30" width="40" height="6" rx="3" fill="var(--brand,#D97757)"/>
+        <g fill="var(--muted,#666666)" opacity=".35">
+          <rect x="28" y="46" width="56" height="4" rx="2"/>
+          <rect x="28" y="57" width="48" height="4" rx="2"/>
+          <rect x="28" y="68" width="56" height="4" rx="2"/>
+          <rect x="28" y="79" width="34" height="4" rx="2"/>
+        </g>
+        <rect x="28" y="92" width="24" height="10" rx="3" fill="var(--muted,#666666)" opacity=".18"/>
+        <!-- selected badge -->
+        <circle cx="96" cy="14" r="10" fill="var(--brand,#D97757)"/>
+        <path d="M91.5 14 l3 3 l6 -6" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      
+        <!-- card B -->
+        <rect x="110" y="14" width="80" height="100" rx="8"
+              fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+        <rect x="122" y="30" width="34" height="6" rx="3" fill="var(--muted,#666666)" opacity=".5"/>
+        <g fill="var(--muted,#666666)" opacity=".25">
+          <rect x="122" y="46" width="56" height="4" rx="2"/>
+          <rect x="122" y="57" width="52" height="4" rx="2"/>
+          <rect x="122" y="68" width="56" height="4" rx="2"/>
+          <rect x="122" y="79" width="40" height="4" rx="2"/>
+          <rect x="122" y="90" width="50" height="4" rx="2"/>
+        </g>
+      
+        <!-- card C — dark mode -->
+        <rect x="204" y="14" width="80" height="100" rx="8" fill="#0d0d0d" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+        <rect x="216" y="30" width="34" height="6" rx="3" fill="#E8927C"/>
+        <g fill="#ffffff" opacity=".28">
+          <rect x="216" y="46" width="56" height="4" rx="2"/>
+          <rect x="216" y="57" width="46" height="4" rx="2"/>
+          <rect x="216" y="68" width="56" height="4" rx="2"/>
+          <rect x="216" y="79" width="36" height="4" rx="2"/>
+          <rect x="216" y="90" width="50" height="4" rx="2"/>
+        </g>
+      
+        <!-- labels -->
+        <g font-family="'Geist', -apple-system, sans-serif" font-size="9" fill="var(--muted,#666666)" text-anchor="middle">
+          <text x="56" y="128">GitHub</text>
+          <text x="150" y="128">Magazine</text>
+          <text x="244" y="128">Dark</text>
+        </g>
+      </svg>
+      <div class="n">02</div><div class="t">Pick a theme</div>
+      <p>GitHub, Docs, Magazine or Minimal — the preview shows exactly what you'll get. Light and dark included.</p>
+    </div>
+    <div class="step">
+      <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="s3t">
+        <title id="s3t">Copy the HTML, download a styled page, or share an instant link</title>
+      
+        <!-- source document -->
+        <rect x="12" y="20" width="88" height="92" rx="8"
+              fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+        <rect x="26" y="36" width="36" height="6" rx="3" fill="var(--brand,#D97757)"/>
+        <g fill="var(--muted,#666666)" opacity=".3">
+          <rect x="26" y="52" width="60" height="4" rx="2"/>
+          <rect x="26" y="63" width="52" height="4" rx="2"/>
+          <rect x="26" y="74" width="60" height="4" rx="2"/>
+          <rect x="26" y="85" width="38" height="4" rx="2"/>
+        </g>
+      
+        <!-- connectors -->
+        <g fill="none" stroke="var(--border,#eaeaea)" stroke-width="1.5">
+          <path d="M100 66 C 130 66, 134 32, 164 32"/>
+          <path d="M100 66 H164"/>
+          <path d="M100 66 C 130 66, 134 100, 164 100"/>
+        </g>
+      
+        <!-- output chips -->
+        <g stroke-linecap="round" stroke-linejoin="round">
+          <!-- copy html -->
+          <rect x="164" y="18" width="124" height="28" rx="14"
+                fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+          <g transform="translate(184,32) scale(.56) translate(-12,-12)" fill="none"
+             stroke="var(--brand,#D97757)" stroke-width="2.4">
+            <path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/>
+          </g>
+          <text x="198" y="36" font-family="'Geist', -apple-system, sans-serif" font-size="10.5"
+                fill="var(--text,#000000)">Copy HTML</text>
+      
+          <!-- download -->
+          <rect x="164" y="52" width="124" height="28" rx="14"
+                fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+          <g transform="translate(184,66) scale(.56) translate(-12,-12)" fill="none"
+             stroke="var(--brand,#D97757)" stroke-width="2.4">
+            <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>
+          </g>
+          <text x="198" y="70" font-family="'Geist', -apple-system, sans-serif" font-size="10.5"
+                fill="var(--text,#000000)">Download .html</text>
+      
+          <!-- share link -->
+          <rect x="164" y="86" width="124" height="28" rx="14"
+                fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+          <g transform="translate(184,100) scale(.56) translate(-12,-12)" fill="none"
+             stroke="var(--brand,#D97757)" stroke-width="2.4">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </g>
+          <text x="198" y="104" font-family="'Geist', -apple-system, sans-serif" font-size="10.5"
+                fill="var(--text,#000000)">Share link</text>
+        </g>
+      </svg>
+      <div class="n">03</div><div class="t">Copy, download or share</div>
+      <p>Clean fragment for CMS/email, a full styled page, or an instant share link.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="content" id="faq">
+  <h2>Frequently asked questions</h2>
+  <details><summary>Is this Markdown to HTML converter really free?</summary><p>Yes — 100% free, with no paid tier at all. Unlimited conversions, every theme, downloads and share links are included, with no signup, no credit card, no watermark and no daily limits. The same goes for our HTML to Markdown, Markdown to PDF and HTML to PDF tools.</p></details>
+  <details><summary>Is there a catch — ads, sign-up walls or file limits?</summary><p>No. There are no ads, no account walls and no premium features held back. The site is a static page that runs in your browser, so it costs almost nothing to operate and stays free.</p></details>
+  <details><summary>Is my markdown uploaded to a server?</summary><p>No. Conversion happens entirely in your browser. Share links compress your document into the URL itself (after the #), which browsers never send to any server.</p></details>
+  <details><summary>What's the difference between "Copy HTML" and "Copy styled page"?</summary><p>Copy HTML gives you a clean semantic fragment (no classes, no styles) for pasting into a CMS, blog or email tool. Copy styled page / Download gives you a complete self-contained HTML document with inline CSS, a table of contents and dark mode.</p></details>
+  <details><summary>Does it support GitHub Flavored Markdown?</summary><p>Yes — tables, task lists, strikethrough, fenced code blocks and autolinks all convert correctly.</p></details>
+  <details><summary>How do temporary share pages work?</summary><p>Instant links pack your compressed document into the link fragment, so the page renders anywhere without a server and never expires. Documents up to about 30,000 characters fit in a link; for longer ones, download the styled HTML page and share the file.</p></details>
+</section>
+
+<!-- More tools -->
+<section class="content" id="tools">
+  <h2>More free tools — no signup, no limits</h2>
+  <div class="steps" style="grid-template-columns:repeat(3,1fr)">
+    <a class="step" href="html-to-markdown/" style="text-decoration:none">
+      <div class="n">TOOL</div><div class="t">HTML to Markdown</div>
+      <p>Paste HTML from any page or CMS and get clean GitHub Flavored Markdown back.</p>
+    </a>
+    <a class="step" href="markdown-to-pdf/" style="text-decoration:none">
+      <div class="n">TOOL</div><div class="t">Markdown to PDF</div>
+      <p>Themed, watermark-free PDFs straight from your browser's print dialog.</p>
+    </a>
+    <a class="step" href="html-to-pdf/" style="text-decoration:none">
+      <div class="n">TOOL</div><div class="t">HTML to PDF</div>
+      <p>Paste a URL or HTML and export a clean, themed PDF — no signup, no watermark.</p>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 mdtohtml.app — your markdown never leaves your browser.</span>
+  <span>
+    <a href="markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="html-to-markdown/">HTML to Markdown</a><a href="markdown-to-pdf/">Markdown to PDF</a><a href="html-to-pdf/">HTML to PDF</a><a href="#faq">FAQ</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
+  </span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/render.js?v=8bcda7e1dc"></script>
+<script src="assets/app.js?v=120c9cbfb6"></script>
+</body>
+</html>

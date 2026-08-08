@@ -1,0 +1,277 @@
+{
+  "meta": {
+    "title": "Markdown Cheat Sheet — Syntax, Exact HTML Output & Fixes",
+    "h1": "Markdown Cheat Sheet: Syntax, HTML Output & Common Fixes",
+    "description": "Every Markdown element with its exact HTML output, live preview, and the mistakes that break it. Free, no signup — test any snippet in the converter.",
+    "canonical": "https://mdtohtml.app/markdown-cheatsheet/",
+    "datePublished": "2026-08-08",
+    "dateModified": "2026-08-08",
+    "socialImage": "https://mdtohtml.app/assets/og-card.jpg",
+    "socialImageAlt": "The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug",
+    "verified": "Verified against marked 12.0.0 · CommonMark 0.31 · last tested 2026-08-08"
+  },
+  "quickReference": [
+    { "element": "Heading", "markdown": "# H1 … ###### H6", "html": "<h1>–<h6>", "spec": "CommonMark", "target": "headings" },
+    { "element": "Bold", "markdown": "**text**", "html": "<strong>", "spec": "CommonMark", "target": "bold-italic" },
+    { "element": "Italic", "markdown": "*text*", "html": "<em>", "spec": "CommonMark", "target": "bold-italic" },
+    { "element": "Bold + Italic", "markdown": "***text***", "html": "<em><strong>", "spec": "CommonMark", "target": "bold-italic" },
+    { "element": "Strikethrough", "markdown": "~~text~~", "html": "<del>", "spec": "GFM", "target": "strikethrough" },
+    { "element": "Line break", "markdown": "line end: \\ or two spaces", "html": "<br>", "spec": "CommonMark", "target": "line-breaks" },
+    { "element": "Blockquote", "markdown": "> quote", "html": "<blockquote>", "spec": "CommonMark", "target": "blockquotes" },
+    { "element": "Unordered list", "markdown": "- item", "html": "<ul><li>", "spec": "CommonMark", "target": "lists" },
+    { "element": "Ordered list", "markdown": "1. item", "html": "<ol><li>", "spec": "CommonMark", "target": "lists" },
+    { "element": "Task list", "markdown": "- [x] done", "html": "<input type=\"checkbox\">", "spec": "GFM", "target": "task-lists" },
+    { "element": "Inline code", "markdown": "`code`", "html": "<code>", "spec": "CommonMark", "target": "code" },
+    { "element": "Code block", "markdown": "```js … ```", "html": "<pre><code class=\"language-js\">", "spec": "CommonMark", "target": "code" },
+    { "element": "Link", "markdown": "[text](url)", "html": "<a href>", "spec": "CommonMark", "target": "links" },
+    { "element": "Image", "markdown": "![alt](src)", "html": "<img src alt>", "spec": "CommonMark", "target": "images" },
+    { "element": "Table", "markdown": "| a | b |", "html": "<table>", "spec": "GFM", "target": "tables" },
+    { "element": "Horizontal rule", "markdown": "---", "html": "<hr>", "spec": "CommonMark", "target": "horizontal-rule" },
+    { "element": "Escape", "markdown": "\\*", "html": "literal *", "spec": "CommonMark", "target": "escaping" }
+  ],
+  "playgroundDefault": "| Feature | Support |\n|:--|--:|\n| **GFM tables** | Yes |\n| `Exact HTML` | Yes |",
+  "elements": [
+    {
+      "id": "headings",
+      "name": "Headings",
+      "spec": "CommonMark",
+      "summary": "ATX headings use one to six hash marks followed by a space. Setext underlines provide alternate H1 and H2 syntax.",
+      "markdown": "# Page title\n\n## Section title ##\n\nSetext heading\n--------------",
+      "gotchas": [
+        "`#Title` has no required space, so CommonMark leaves it as plain text.",
+        "Closing hashes in `## Title ##` are valid and are removed from the heading text.",
+        "Seven or more opening hashes do not make a heading.",
+        "`===` under text makes H1 and `---` under text makes H2; a standalone `---` is a horizontal rule. One blank line changes the result.",
+        "Heading IDs are renderer behavior, not Markdown syntax. GitHub creates slugs; marked itself does not."
+      ],
+      "compatibility": "ATX and Setext headings work in CommonMark and GFM. This site adds deterministic IDs after marked renders the heading."
+    },
+    {
+      "id": "bold-italic",
+      "name": "Bold and italic",
+      "spec": "CommonMark",
+      "summary": "Use one delimiter for emphasis, two for strong emphasis, and three for both.",
+      "markdown": "*italic* and **bold** and ***both***\n\nUse `snake_case_name` for code.",
+      "gotchas": [
+        "CommonMark prevents intraword underscores from adding emphasis, but stars can: `a*b*c` emphasizes the b.",
+        "Intraword strong emphasis works with stars in `un**bel**ievable`, but not with underscores.",
+        "Spaces just inside the delimiters make `** text **` fail.",
+        "`***x***` becomes nested emphasis and strong markup; exact nesting is parser-defined.",
+        "Wrap variable names and filenames in backticks."
+      ],
+      "compatibility": "Star and underscore emphasis are supported by CommonMark, GFM, and this converter."
+    },
+    {
+      "id": "line-breaks",
+      "name": "Line breaks",
+      "spec": "CommonMark",
+      "summary": "A single newline is soft. Use a visible trailing backslash for a hard break, or a blank line for a new paragraph.",
+      "markdown": "A visible hard break\\\nstarts this line below.\n\nA blank line starts a new paragraph.",
+      "gotchas": [
+        "A single newline is a soft break; HTML collapses it to whitespace inside the same paragraph.",
+        "Two trailing spaces also produce `<br>`, but editors often delete invisible trailing whitespace on save.",
+        "A trailing backslash produces `<br>` and is the recommended, visible form.",
+        "A blank line starts a new paragraph.",
+        "This converter uses `breaks: false`, following CommonMark. GitHub comments may turn every newline into a break, while README files do not."
+      ],
+      "compatibility": "Hard breaks and paragraph breaks are CommonMark. Automatic breaks for every newline are a renderer option and are disabled here."
+    },
+    {
+      "id": "lists",
+      "name": "Lists",
+      "spec": "CommonMark",
+      "summary": "Use hyphens, plus signs, or stars for unordered lists and a number plus period for ordered lists.",
+      "markdown": "3. First rendered item\n4. Second item\n   - Nested item\n   - Another nested item",
+      "gotchas": [
+        "Numbers need not be sequential, but the first number controls the `<ol start>` value.",
+        "Nested content must align with the parent item's content start: two spaces after `- `, three after `1. `.",
+        "Mixing tabs and spaces commonly flattens nested lists; too much indentation can create a code block.",
+        "Blank lines between items create a loose list whose `<li>` contents are wrapped in `<p>`.",
+        "A prose line such as `2024. That year` can become a list; write `2024\\.` to escape it.",
+        "Leave a blank line between a paragraph and the list for portable rendering."
+      ],
+      "compatibility": "Ordered, unordered, nested, tight, and loose lists work in CommonMark and GFM."
+    },
+    {
+      "id": "task-lists",
+      "name": "Task lists",
+      "spec": "GFM",
+      "summary": "GFM recognizes checkbox markers at the start of list-item content.",
+      "markdown": "- [x] Ship the feature\n- [ ] Write the release notes",
+      "gotchas": [
+        "The marker must be `- [x]` or `- [ ]`; `-[x]` is missing the list-marker space.",
+        "A standalone `[x]` is not a task item.",
+        "The generated checkbox is disabled, so it cannot be clicked in static HTML. Platforms add interactivity separately.",
+        "A bare checkbox has no explicit label, so use task lists cautiously in formal accessible documents."
+      ],
+      "compatibility": "Task lists are GFM, not core CommonMark. marked emits disabled checkbox inputs."
+    },
+    {
+      "id": "links",
+      "name": "Links",
+      "spec": "CommonMark",
+      "summary": "Inline, titled, reference, and angle-bracket links cover most destinations.",
+      "markdown": "[Converter](https://mdtohtml.app/ \"Free converter\")\n\n[Reference link][tool]\n\n[tool]: https://mdtohtml.app/markdown-cheatsheet/",
+      "gotchas": [
+        "URLs containing spaces need `%20` or angle brackets, as in `[file](<my file.pdf>)`.",
+        "A closing parenthesis in a URL must be escaped as `\\)`.",
+        "Bare URL autolinking is GFM. Core CommonMark uses `<https://example.com>`.",
+        "Markdown has no native `target=\"_blank\"` syntax; raw HTML may be sanitized by a platform.",
+        "Relative URLs resolve from the rendered page, so moving or converting the file can break them.",
+        "DOMPurify removes unsafe protocols such as `javascript:` in this converter."
+      ],
+      "compatibility": "Inline and reference links are CommonMark. Bare URL autolinking is GFM and enabled here."
+    },
+    {
+      "id": "images",
+      "name": "Images",
+      "spec": "CommonMark",
+      "summary": "Markdown image syntax needs useful alt text. Raw HTML is required when explicit dimensions and lazy loading matter.",
+      "markdown": "<a href=\"/\" title=\"Open the Markdown converter\"><picture><source srcset=\"/assets/demo/landscape.webp\" type=\"image/webp\"><img src=\"/assets/demo/landscape.jpg\" alt=\"Tabby kitten on a desk beside a code-print mug, with the mdtohtml.app logo and a Markdown-to-HTML file icon\" title=\"Self-hosted demo image\" width=\"600\" height=\"400\" loading=\"lazy\"></picture></a>",
+      "gotchas": [
+        "The standard syntax is `![alt](src)` and alt text is essential for accessibility.",
+        "Markdown has no standard image-size syntax. `![alt](img.png =100x)` is renderer-specific; use an HTML `<img width height>` when size matters.",
+        "Make a clickable image with `[![alt](img.png)](https://target)`.",
+        "A `<picture>` with a WebP `<source>` and a JPG `<img>` fallback survives conversion, so modern browsers get the smaller file and older ones still see the image.",
+        "Relative paths are the leading cause of broken images after a standalone HTML file moves. Use an absolute URL or distribute the image directory with the HTML.",
+        "Encode spaces in filenames as `%20`.",
+        "If the image file is missing, browsers keep the descriptive `alt` text as the fallback — write alt for readers, not as a caption."
+      ],
+      "compatibility": "Images and linked images are CommonMark. Dimensions, lazy loading and the `<picture>`/`<source>` fallback shown here are safe raw HTML retained by this converter."
+    },
+    {
+      "id": "code",
+      "name": "Code",
+      "spec": "CommonMark",
+      "summary": "Backticks mark inline code; fenced or indented blocks preserve code as literal text.",
+      "markdown": "Use ``a ` b`` when code contains a backtick.\n\n```js\nconst html = MDH.renderMarkdown(markdown).html;\n```",
+      "gotchas": [
+        "Use double backticks around inline code that contains a backtick.",
+        "Fences may use backticks or tildes; a language label creates a class such as `language-js`.",
+        "Syntax highlighting is not Markdown. The class is only a hook for highlight.js, Prism, Shiki, or similar tools.",
+        "Four-space indentation also creates a code block and is easy to trigger accidentally inside lists.",
+        "HTML inside code blocks is escaped, for example `<` becomes `&lt;`.",
+        "Indent a fenced block to keep it inside a list item.",
+        "To demonstrate triple backticks inside a block, fence the outer block with four backticks."
+      ],
+      "compatibility": "Inline code, indented code, and fenced code are CommonMark. Language-based highlighting is renderer-specific."
+    },
+    {
+      "id": "blockquotes",
+      "name": "Blockquotes",
+      "spec": "CommonMark",
+      "summary": "Prefix quoted content with `>`; blockquotes can contain most other block elements.",
+      "markdown": "> A quoted paragraph.\n>\n> - A list inside the quote\n> - A second item\n>\n>> A nested quote",
+      "gotchas": [
+        "A lazy continuation line without `>` can still be absorbed into the quote.",
+        "Use a line containing only `>` to separate paragraphs inside a quote.",
+        "Use `>>` for a nested quote.",
+        "Lists, code blocks, and headings can all appear inside blockquotes."
+      ],
+      "compatibility": "Blockquotes and nested blockquotes are supported by CommonMark and GFM."
+    },
+    {
+      "id": "tables",
+      "name": "Tables",
+      "spec": "GFM",
+      "summary": "A header row and delimiter row create a GFM table; colons control alignment.",
+      "markdown": "| Syntax | Result | Support |\n|:--|:--:|--:|\n| `**bold**` | **bold** | GFM |\n| `a\\|b` | a\\|b | Escaped pipe |",
+      "gotchas": [
+        "The delimiter row such as `|---|---|` is mandatory; without it, the table stays text.",
+        "Use `:---` for left, `:---:` for center, and `---:` for right alignment.",
+        "Escape every pipe inside a cell as `\\|`, even inside inline code.",
+        "Leading and trailing pipes are optional.",
+        "The header determines the column count; extra cells are discarded.",
+        "GFM tables have no colspan, rowspan, or multiline cell syntax. Use `<br>` for a visual line break.",
+        "Leave a blank line before a table for portable rendering."
+      ],
+      "compatibility": "Tables are GFM, not core CommonMark. marked has GFM enabled on this site."
+    },
+    {
+      "id": "strikethrough",
+      "name": "Strikethrough",
+      "spec": "GFM",
+      "summary": "Double tildes are the most portable GFM form for deleted text.",
+      "markdown": "The old value is ~~deprecated~~ replaced.",
+      "gotchas": [
+        "`~~text~~` becomes `<del>`.",
+        "GFM can accept one or two tildes in some contexts, but many parsers only recognize two. Always use double tildes.",
+        "Core CommonMark does not support strikethrough and leaves the delimiters as text."
+      ],
+      "compatibility": "Strikethrough is GFM and enabled here; it is unsupported by core CommonMark."
+    },
+    {
+      "id": "horizontal-rule",
+      "name": "Horizontal rule",
+      "spec": "CommonMark",
+      "summary": "Three or more spaced or unspaced hyphens, stars, or underscores create a thematic break.",
+      "markdown": "Paragraph above.\n\n---\n\nParagraph below.",
+      "gotchas": [
+        "`---`, `***`, and `___` all create a rule when used as a block.",
+        "A `---` immediately below text is parsed as a Setext H2 underline, not `<hr>`. Leave a blank line before the rule."
+      ],
+      "compatibility": "Thematic breaks are CommonMark and work in GFM and this converter."
+    },
+    {
+      "id": "escaping",
+      "name": "Escaping",
+      "spec": "CommonMark",
+      "summary": "A backslash makes ASCII punctuation literal instead of starting Markdown syntax.",
+      "markdown": "\\*not italic\\* and \\# not a heading\n\nA literal less-than sign: &lt; and copyright: &copy;",
+      "gotchas": [
+        "Backslash escapes work for punctuation including `\\* \\_ \\# \\` \\[ \\] \\( \\) \\| \\~ \\\\`.",
+        "Literal `<` and `&` are encoded as entities when needed.",
+        "Named HTML entities such as `&copy;` pass through as their represented character."
+      ],
+      "compatibility": "Backslash escapes and HTML entities are part of CommonMark."
+    },
+    {
+      "id": "raw-html",
+      "name": "Raw HTML",
+      "spec": "CommonMark",
+      "summary": "CommonMark permits raw HTML, but safe renderers sanitize dangerous tags, attributes, and URLs.",
+      "markdown": "<div class=\"note\">Plain <strong>HTML</strong>, not **Markdown emphasis**.</div>\n\n<button onclick=\"alert('unsafe')\">Sanitized button</button>\n\n<script>alert('removed')</script>",
+      "gotchas": [
+        "CommonMark and GFM allow embedded HTML, but platforms commonly sanitize it. This site uses DOMPurify to remove scripts and event handlers.",
+        "Markdown is not parsed inside an HTML block: `<div>**bold**</div>` keeps the asterisks.",
+        "Emoji shortcodes such as `:smile:` are a GitHub platform feature, not CommonMark.",
+        "Footnotes such as `[^1]` are parser extensions and are not supported by marked 12 in this configuration."
+      ],
+      "compatibility": "Raw HTML is accepted by CommonMark, GFM, and marked; the exact allowlist is controlled by DOMPurify."
+    }
+  ],
+  "troubleshooting": [
+    { "symptom": "My line breaks disappear and several lines become one paragraph", "cause": "A single newline is a soft break.", "fix": "Add a trailing backslash for `<br>`, or a blank line for a new paragraph.", "example": "First line\\\nSecond line" },
+    { "symptom": "Two trailing spaces still do not make a line break", "cause": "The editor removed invisible trailing whitespace on save.", "fix": "Use a visible trailing backslash instead.", "example": "Reliable break\\\nNext line" },
+    { "symptom": "My table displays as one line of plain text", "cause": "The required delimiter row is missing.", "fix": "Add `|---|---|` and leave a blank line before the table.", "example": "| A | B |\n|---|---|\n| 1 | 2 |" },
+    { "symptom": "My table breaks in the middle", "cause": "A cell contains an unescaped pipe, possibly inside inline code.", "fix": "Escape every cell pipe as `\\|`.", "example": "| Code |\n|---|\n| `a\\|b` |" },
+    { "symptom": "My image is missing and only alt text remains", "cause": "A relative path resolves from a different page after conversion.", "fix": "Use an absolute URL or ship the image directory with the HTML.", "example": "![Useful alt](https://mdtohtml.app/assets/demo/landscape.jpg)" },
+    { "symptom": "A variable name becomes italic", "cause": "Emphasis delimiters were interpreted as formatting.", "fix": "Wrap identifiers in backticks or escape punctuation.", "example": "`some_var_name`" },
+    { "symptom": "My nested list is flattened", "cause": "Indentation is short or tabs and spaces are mixed.", "fix": "Align child content with the parent item content start.", "example": "- Parent\n  - Child" },
+    { "symptom": "List items suddenly have large gaps", "cause": "Blank lines made the list loose, so each item contains a paragraph.", "fix": "Remove blank lines between items.", "example": "- Tight one\n- Tight two" },
+    { "symptom": "A mysterious horizontal line or heading appears", "cause": "A `---` below text is a Setext heading underline; standalone it is a rule.", "fix": "Put blank lines around a rule or use `***`.", "example": "Text\n\n***\n\nMore text" },
+    { "symptom": "`#Title` does not become a heading", "cause": "CommonMark requires a space after the hashes.", "fix": "Write `# Title`.", "example": "# Title" },
+    { "symptom": "My task-list checkbox cannot be clicked", "cause": "GFM output intentionally uses a disabled checkbox.", "fix": "Treat it as status display; add application JavaScript for interaction.", "example": "- [x] Complete" },
+    { "symptom": "Markdown works on GitHub but not elsewhere", "cause": "The source uses GFM extensions or a different `breaks` option.", "fix": "Check the compatibility table and prefer CommonMark forms.", "example": "<https://example.com>" },
+    { "symptom": "Raw HTML or attributes disappear", "cause": "DOMPurify removed unsafe markup.", "fix": "Use equivalent Markdown or safe semantic HTML without scripts and event handlers.", "example": "**Safe emphasis**" },
+    { "symptom": "Markdown inside an HTML tag is not formatted", "cause": "Markdown is not parsed inside CommonMark HTML blocks.", "fix": "Use pure Markdown or complete the formatting in HTML.", "example": "<div><strong>HTML bold</strong></div>" }
+  ],
+  "compatibility": [
+    { "id": "core", "syntax": "Headings / emphasis / lists / links / images / code / quotes", "commonmark": true, "gfm": true },
+    { "id": "tables", "syntax": "Tables", "commonmark": false, "gfm": true },
+    { "id": "tasks", "syntax": "Task lists", "commonmark": false, "gfm": true },
+    { "id": "strike", "syntax": "Strikethrough", "commonmark": false, "gfm": true },
+    { "id": "url", "syntax": "Bare URL autolinking", "commonmark": false, "gfm": true },
+    { "id": "footnotes", "syntax": "Footnotes `[^1]`", "commonmark": false, "gfm": "partial" },
+    { "id": "emoji", "syntax": "Emoji shortcode `:smile:`", "commonmark": false, "gfm": "platform" },
+    { "id": "breaks", "syntax": "Every newline becomes `<br>`", "commonmark": false, "gfm": "context" }
+  ],
+  "faq": [
+    { "question": "What Markdown flavor does this converter use?", "answer": "It uses marked 12.0.0 with GitHub Flavored Markdown enabled and `breaks: false`, then sanitizes output with DOMPurify. Tables, task lists, strikethrough, fenced code, and bare URL autolinking work." },
+    { "question": "Why does the exact HTML include heading IDs?", "answer": "After marked and DOMPurify run, the shared MdEngine assigns deterministic IDs to H1–H3 headings for tables of contents and direct links. IDs are renderer behavior, not part of CommonMark." },
+    { "question": "Can Markdown set image width and height?", "answer": "Not in standard CommonMark. Use safe raw HTML with explicit `width`, `height`, and `loading=\"lazy\"`, as the self-hosted image example does." },
+    { "question": "Why are task-list checkboxes disabled?", "answer": "GFM represents task state with disabled checkbox inputs. GitHub or an application can add interaction, but static generated HTML is intentionally read-only." },
+    { "question": "Is raw HTML safe to paste?", "answer": "The converter sanitizes output with DOMPurify, removing scripts, event handlers, and unsafe URLs. Still review generated HTML before publishing untrusted content." },
+    { "question": "Can I use this page without JavaScript?", "answer": "Yes. Every reference, static preview, exact HTML sample, gotcha, compatibility note, troubleshooting fix, and FAQ is built into the page. JavaScript only powers live editing, copying, and Try it shortcuts." }
+  ]
+}

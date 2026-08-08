@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="h3t">
+  <title id="h3t">Copy the Markdown, download a .md file, or send it to the HTML converter</title>
+
+  <!-- markdown document -->
+  <rect x="12" y="20" width="92" height="92" rx="8"
+        fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+  <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="9">
+    <text x="24" y="40"><tspan fill="var(--brand,#D97757)">#</tspan><tspan fill="var(--text,#000000)"> Notes</tspan></text>
+    <text x="24" y="58"><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)">GFM</tspan><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)"> clean</tspan></text>
+    <text x="24" y="74"><tspan fill="var(--brand,#D97757)">-</tspan><tspan fill="var(--muted,#666666)"> tables kept</tspan></text>
+    <text x="24" y="90"><tspan fill="var(--brand,#D97757)">-</tspan><tspan fill="var(--muted,#666666)"> code kept</tspan></text>
+  </g>
+
+  <!-- connectors -->
+  <g fill="none" stroke="var(--border,#eaeaea)" stroke-width="1.5">
+    <path d="M104 66 C 130 66, 134 32, 160 32"/>
+    <path d="M104 66 H160"/>
+    <path d="M104 66 C 130 66, 134 100, 160 100"/>
+  </g>
+
+  <!-- output chips -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <rect x="160" y="18" width="128" height="28" rx="14"
+          fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+    <g transform="translate(180,32) scale(.54) translate(-12,-12)" fill="none"
+       stroke="var(--brand,#D97757)" stroke-width="2.4">
+      <rect x="9" y="9" width="13" height="13" rx="2"/>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+    </g>
+    <text x="194" y="36" font-family="'Geist', -apple-system, sans-serif" font-size="10"
+          fill="var(--text,#000000)">Copy Markdown</text>
+
+    <rect x="160" y="52" width="128" height="28" rx="14"
+          fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+    <g transform="translate(180,66) scale(.54) translate(-12,-12)" fill="none"
+       stroke="var(--brand,#D97757)" stroke-width="2.4">
+      <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>
+    </g>
+    <text x="194" y="70" font-family="'Geist', -apple-system, sans-serif" font-size="10"
+          fill="var(--text,#000000)">Download .md</text>
+
+    <rect x="160" y="86" width="128" height="28" rx="14"
+          fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
+    <g transform="translate(180,100) scale(.54) translate(-12,-12)" fill="none"
+       stroke="var(--brand,#D97757)" stroke-width="2.4">
+      <path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/>
+    </g>
+    <text x="194" y="104" font-family="'Geist', -apple-system, sans-serif" font-size="10"
+          fill="var(--text,#000000)">Send to HTML</text>
+  </g>
+</svg>
