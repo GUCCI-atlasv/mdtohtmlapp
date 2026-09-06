@@ -171,6 +171,16 @@
     } catch (error) { setStatus(error.message, "error"); }
   }
 
+  async function openFeedback() {
+    var feedbackUrl = new URL(api.runtime.getURL("feedback.html"));
+    if (currentTab) {
+      feedbackUrl.searchParams.set("title", (currentTab.title || "").slice(0, 200));
+      feedbackUrl.searchParams.set("url", (currentTab.url || "").slice(0, 1200));
+    }
+    await api.tabs.create({ url: feedbackUrl.href });
+    window.close();
+  }
+
   async function init() {
     var tabs = await api.tabs.query({ active: true, currentWindow: true });
     currentTab = tabs[0];
@@ -209,6 +219,9 @@
   $("copyMarkdown").addEventListener("click", copyMarkdown);
   $("saveHtml").addEventListener("click", saveHtml);
   $("pickContent").addEventListener("click", pickContent);
+  $("openFeedback").addEventListener("click", function () {
+    openFeedback().catch(function () { setStatus("无法打开反馈页面，请发送邮件至 support@mdtohtml.app。", "error"); });
+  });
   if (!/Mac/i.test(navigator.platform)) $("shortcut").textContent = "Alt+Shift+M 快速保存 HTML";
   init().catch(function (error) { setStatus(error.message || "无法读取当前标签页。", "error"); toggleButtons(true); });
 })();

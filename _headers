@@ -9,3 +9,6 @@
 
 /privacy/
   Link: <https://mdtohtml.app/privacy/>; rel="canonical"
+
+/feedback/
+  Link: <https://mdtohtml.app/feedback/>; rel="canonical"

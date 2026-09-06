@@ -17,6 +17,7 @@ const HTML_FILES = [
   "v/index.html",
   "terms/index.html",
   "privacy/index.html",
+  "feedback/index.html",
   "html-to-markdown/index.html",
   "markdown-to-pdf/index.html",
   "html-to-pdf/index.html",

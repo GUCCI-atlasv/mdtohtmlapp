@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feedback & Support | mdtohtml</title>
+<meta name="description" content="Send feedback, report an issue, or request a feature for mdtohtml and the Save Page as HTML browser extension.">
+<link rel="canonical" href="https://mdtohtml.app/feedback/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=1f53051d82">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/"><span class="mark">HTML</span>mdtohtml</a>
+  <div class="nav-right">
+    <a href="/">Markdown → HTML</a>
+    <a href="/html-to-markdown/">HTML → Markdown</a>
+    <a href="/markdown-to-pdf/">Markdown → PDF</a>
+    <a href="/html-to-pdf/">HTML → PDF</a>
+  </div>
+</nav>
+
+<main class="feedback-page">
+  <header class="feedback-hero">
+    <span class="feedback-kicker">FEEDBACK &amp; SUPPORT</span>
+    <h1>How can we help?</h1>
+    <p>Report a problem, suggest an improvement, or tell us what would make mdtohtml more useful.</p>
+    <a class="support-email" href="mailto:support@mdtohtml.app">support@mdtohtml.app</a>
+  </header>
+
+  <div class="feedback-layout">
+    <form class="feedback-form" id="feedbackForm">
+      <div class="feedback-form-head">
+        <h2>Send feedback</h2>
+        <p>We usually need a short description and the affected page to understand the issue.</p>
+      </div>
+
+      <div class="feedback-grid">
+        <label>
+          <span>Product</span>
+          <select id="product" required>
+            <option value="Website">Website</option>
+            <option value="Browser Extension">Browser Extension</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <label>
+          <span>Feedback type</span>
+          <select id="category" required>
+            <option value="Bug report">Bug report</option>
+            <option value="Formatting or image issue">Formatting or image issue</option>
+            <option value="Feature request">Feature request</option>
+            <option value="General feedback">General feedback</option>
+          </select>
+        </label>
+      </div>
+
+      <label>
+        <span>Your email <small>Optional, if you would like a reply</small></span>
+        <input id="email" type="email" autocomplete="email" placeholder="you@example.com">
+      </label>
+
+      <label>
+        <span>Related page <small>Optional</small></span>
+        <input id="pageUrl" type="url" inputmode="url" placeholder="https://mdtohtml.app/…">
+      </label>
+
+      <label>
+        <span>What happened?</span>
+        <textarea id="message" required minlength="5" maxlength="3000" placeholder="Describe the problem, what you expected, and how we can reproduce it."></textarea>
+      </label>
+      <div class="feedback-count"><span>Minimum 5 characters</span><span id="counter">0 / 3000</span></div>
+
+      <label class="feedback-check">
+        <input id="includeBrowser" type="checkbox" checked>
+        <span>Include browser information to help diagnose technical issues</span>
+      </label>
+
+      <div class="feedback-privacy">
+        <strong>Your feedback stays under your control.</strong>
+        <span>Submitting opens your default email app with a message addressed to support@mdtohtml.app. You review it before sending.</span>
+      </div>
+
+      <div class="feedback-actions">
+        <button class="btn btn-primary" type="submit">Open email to send</button>
+        <button class="btn btn-ghost" type="button" id="copyFeedback">Copy feedback</button>
+      </div>
+      <p class="feedback-status" id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <aside class="feedback-aside">
+      <div>
+        <span class="aside-number">01</span>
+        <h2>For export issues</h2>
+        <p>Include the source page URL and tell us whether you saved HTML, Markdown, or PDF.</p>
+      </div>
+      <div>
+        <span class="aside-number">02</span>
+        <h2>For extension issues</h2>
+        <p>Mention your browser and whether the issue affects every page or only one website.</p>
+      </div>
+      <div>
+        <span class="aside-number">03</span>
+        <h2>Prefer plain email?</h2>
+        <p><a href="mailto:support@mdtohtml.app">Write directly to support@mdtohtml.app</a>.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 mdtohtml.app — your content never leaves your browser.</span>
+  <span>
+    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
+  </span>
+</footer>
+
+<script src="/assets/feedback.js?v=6a044c2abe"></script>
+</body>
+</html>

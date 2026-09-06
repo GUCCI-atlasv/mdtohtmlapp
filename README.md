@@ -80,7 +80,7 @@ content/cheatsheet.json    Cheatsheet source of truth
 build/                     Generators (cheatsheet, asset hashing)
 assets/                    CSS, JS, step SVGs, demo & OG images
 functions/_middleware.js   www/.html/trailing-slash canonicalization
-extension/                 Browser extension source
+extension/                 Browser extension source (HTML-first export + feedback form)
 test/                      Automated checks
 ```
 

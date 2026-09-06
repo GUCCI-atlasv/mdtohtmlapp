@@ -25,6 +25,7 @@
 - HTML 整页模式保存当前 DOM，并移除脚本与嵌入对象；正文模式生成带标题、作者、来源和发布时间的干净独立文档。
 - Markdown 可选写入 YAML Front Matter、来源 URL、作者、发布时间与保存时间。
 - 支持右键保存正文、完整网页或当前选区为 HTML，所有选项会自动记忆。
+- 弹窗提供“问题反馈”入口，可填写问题类型、联系邮箱和问题描述，并发送至 `support@mdtohtml.app`。
 - 快捷键默认保存 HTML：macOS `Control+Shift+M`，Windows/Linux `Alt+Shift+M`。
 - 仅需当前标签页临时权限，不申请全部网站的永久读取权限。
 

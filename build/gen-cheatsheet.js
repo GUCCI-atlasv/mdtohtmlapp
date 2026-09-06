@@ -273,7 +273,7 @@ const html = `<!DOCTYPE html>
 
 <footer>
   <span>© 2026 mdtohtml.app · ${escapeHtml(content.meta.verified)}</span>
-  <span><a href="../">Markdown to HTML</a><a href="../html-to-markdown/">HTML to Markdown</a><a href="../markdown-to-pdf/">Markdown to PDF</a><a href="../html-to-pdf/">HTML to PDF</a><a href="../extension.zip?v=1.3.0" download>Browser Extension</a><a href="/privacy/">Privacy</a></span>
+  <span><a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="../">Markdown to HTML</a><a href="../html-to-markdown/">HTML to Markdown</a><a href="../markdown-to-pdf/">Markdown to PDF</a><a href="../html-to-pdf/">HTML to PDF</a><a href="../extension.zip?v=1.4.0" download>Browser Extension</a><a href="/privacy/">Privacy</a></span>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.CHEATSHEET_DATA=${jsonForScript({

@@ -17,7 +17,7 @@ const VERIFY_HTML = {
 `,
 };
 
-const CANONICAL_DIRS = new Set(["/terms/", "/privacy/", "/markdown-cheatsheet/"]);
+const CANONICAL_DIRS = new Set(["/terms/", "/privacy/", "/feedback/", "/markdown-cheatsheet/"]);
 const PATH_ALIASES = new Map([
   ["/markdown-cheat-sheet", "/markdown-cheatsheet/"],
   ["/markdown-cheat-sheet/", "/markdown-cheatsheet/"],
@@ -67,16 +67,24 @@ export async function onRequest(context) {
     path = path.slice(0, -5) || "/";
   }
 
+  // /index.html → /, /dir/index.html → /dir/ (stripping .html alone would 404)
+  if (path === "/index") {
+    path = "/";
+  } else if (path.endsWith("/index")) {
+    path = path.slice(0, -"index".length);
+  }
+
   path = PATH_ALIASES.get(path.toLowerCase()) || path;
 
   // Legal pages: always trailing slash (CF Pages directory index)
-  if (path === "/terms" || path === "/privacy" || path === "/markdown-cheatsheet") {
+  if (path === "/terms" || path === "/privacy" || path === "/feedback" || path === "/markdown-cheatsheet") {
     path = `${path}/`;
   }
 
   url.pathname = path;
 
   if (
+    url.protocol !== reqUrl.protocol ||
     url.hostname !== reqUrl.hostname ||
     url.pathname !== reqUrl.pathname
   ) {

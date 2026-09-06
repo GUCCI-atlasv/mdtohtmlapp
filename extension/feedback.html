@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>问题反馈 · Save Page as HTML</title>
+  <link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+  <main class="feedback-shell">
+    <header class="feedback-header">
+      <span class="mark">HTML</span>
+      <div>
+        <p class="eyebrow">Save Page as HTML</p>
+        <h1>问题反馈</h1>
+        <p>告诉我们遇到的问题或希望增加的功能。</p>
+      </div>
+    </header>
+
+    <form id="feedbackForm">
+      <label for="category">反馈类型</label>
+      <select id="category" required>
+        <option value="导出问题">导出问题</option>
+        <option value="图片或排版问题">图片或排版问题</option>
+        <option value="功能建议">功能建议</option>
+        <option value="其他问题">其他问题</option>
+      </select>
+
+      <label for="email">联系邮箱 <span>可选</span></label>
+      <input id="email" type="email" autocomplete="email" placeholder="方便我们回复你">
+
+      <label for="message">问题描述</label>
+      <textarea id="message" required minlength="5" maxlength="3000" placeholder="请描述发生了什么、你期望的结果，以及是否可以稳定复现。"></textarea>
+      <div class="field-note"><span>至少填写 5 个字符</span><span id="counter">0 / 3000</span></div>
+
+      <section class="page-context" id="pageContext" hidden>
+        <div>
+          <span>相关页面</span>
+          <b id="contextTitle"></b>
+          <small id="contextUrl"></small>
+        </div>
+        <label class="include-page"><input id="includePage" type="checkbox" checked> 附上页面信息</label>
+      </section>
+
+      <div class="privacy-note">
+        <b>反馈将发送至 support@mdtohtml.app</b>
+        <span>点击发送后会打开系统默认邮箱，由你最后确认发送。插件不会在后台上传反馈内容。</span>
+      </div>
+
+      <div class="actions">
+        <button class="primary" type="submit">打开邮箱发送</button>
+        <button class="secondary" type="button" id="copyFeedback">复制反馈内容</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+  <script src="feedback.js"></script>
+</body>
+</html>
