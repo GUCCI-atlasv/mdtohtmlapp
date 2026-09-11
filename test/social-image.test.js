@@ -12,11 +12,14 @@ const CARD_FILE = path.join(root, "assets", "og-card.jpg");
 const SHARED_PAGES = [
   "index.html",
   "html-to-markdown/index.html",
-  "pdf-to-markdown/index.html",
   "markdown-to-pdf/index.html",
   "html-to-pdf/index.html",
   "markdown-cheatsheet/index.html"
 ];
+
+const PDF_PAGE = "pdf-to-markdown/index.html";
+const PDF_CARD = "https://mdtohtml.app/assets/og-pdf-to-markdown.png";
+const PDF_CARD_FILE = path.join(root, "assets", "og-pdf-to-markdown.png");
 
 function read(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
@@ -53,6 +56,28 @@ test("every shared page advertises the social card with matching dimensions", ()
     assert.ok(source.includes('name="twitter:card" content="summary_large_image"'), `twitter:card must be summary_large_image in ${page}`);
     assert.match(source, /<meta property="og:image:alt" content="[^"]{20,}">/, `og:image:alt missing or too short in ${page}`);
   }
+});
+
+test("PDF to Markdown uses its own social card PNG", () => {
+  assert.ok(fs.existsSync(PDF_CARD_FILE), "assets/og-pdf-to-markdown.png is missing");
+  const bytes = fs.readFileSync(PDF_CARD_FILE);
+  assert.ok(bytes.length < 300 * 1024, `og-pdf-to-markdown.png is ${bytes.length} bytes`);
+  // PNG IHDR width/height at bytes 16..23
+  assert.equal(bytes.readUInt32BE(16), 1200);
+  assert.equal(bytes.readUInt32BE(20), 630);
+
+  const source = read(PDF_PAGE);
+  assert.ok(source.includes(`<meta property="og:image" content="${PDF_CARD}">`), "og:image missing on PDF page");
+  assert.ok(source.includes('<meta property="og:image:width" content="1200">'), "og:image:width missing on PDF page");
+  assert.ok(source.includes('<meta property="og:image:height" content="630">'), "og:image:height missing on PDF page");
+  assert.ok(source.includes('<meta property="og:image:type" content="image/png">'), "og:image:type should be image/png on PDF page");
+  assert.ok(source.includes(`<meta name="twitter:image" content="${PDF_CARD}">`), "twitter:image missing on PDF page");
+  assert.ok(source.includes('name="twitter:card" content="summary_large_image"'), "twitter:card must be summary_large_image on PDF page");
+  assert.match(source, /<meta property="og:image:alt" content="[^"]{20,}">/, "og:image:alt missing or too short on PDF page");
+  assert.ok(!source.includes("tabby kitten"), "PDF page should not keep kitten OG alt copy");
+  assert.ok(source.includes('src="../assets/pdf-to-markdown-hero.png"'), "hero image missing on PDF page");
+  assert.ok(source.includes('src="../assets/pdf-to-markdown-demo.png"'), "demo image missing on PDF page");
+  assert.ok(!/<video\b/i.test(source), "PDF page must not embed video");
 });
 
 test("the cheat sheet card comes from the content source, not hardcoded markup", () => {

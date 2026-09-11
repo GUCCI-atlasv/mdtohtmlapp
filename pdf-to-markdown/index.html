@@ -12,14 +12,14 @@
 <meta property="og:url" content="https://mdtohtml.app/pdf-to-markdown/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="mdtohtml.app">
-<meta property="og:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<meta property="og:image" content="https://mdtohtml.app/assets/og-pdf-to-markdown.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:alt" content="The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="PDF to Markdown on mdtohtml.app — drop a PDF, get clean editable Markdown locally">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mdtohtml.app/assets/og-card.jpg">
-<meta name="twitter:image:alt" content="The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug">
+<meta name="twitter:image" content="https://mdtohtml.app/assets/og-pdf-to-markdown.png">
+<meta name="twitter:image:alt" content="PDF to Markdown on mdtohtml.app — drop a PDF, get clean editable Markdown locally">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet">
@@ -58,6 +58,10 @@
 .dropzone .dz-sub{margin-top:6px;font-size:13px;color:var(--muted)}
 .notice{max-width:680px;margin:16px auto 0;padding:10px 14px;border-radius:10px;background:color-mix(in srgb,var(--brand) 10%,transparent);border:1px solid color-mix(in srgb,var(--brand) 28%,transparent);font-size:13px;color:var(--text);text-align:left}
 .notice strong{color:var(--brand)}
+.page-hero-img{display:block;max-width:min(760px,100%);width:100%;height:auto;margin:22px auto 0;border-radius:14px;border:1px solid var(--border);box-shadow:0 14px 36px color-mix(in srgb,var(--text) 9%,transparent)}
+.page-demo{max-width:760px;margin:28px auto 0;text-align:center}
+.page-demo img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--border)}
+.page-demo figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -75,6 +79,7 @@
 <section class="hero" style="padding-bottom:12px">
   <h1>PDF in. <em>Clean Markdown</em> out.</h1>
   <p>Convert a text-layer PDF to Markdown in your browser — private, free, no upload. Copy or download <code>.md</code>.</p>
+  <img class="page-hero-img" src="../assets/pdf-to-markdown-hero.png" width="1600" height="900" alt="Drop a PDF and preview clean Markdown — PDF to Markdown workflow on mdtohtml.app" decoding="async" fetchpriority="high">
 
   <div class="dropzone" id="dropZone" role="button" tabindex="0" aria-label="Drop a PDF here or click to choose a file">
     <div class="dz-icon" aria-hidden="true">
@@ -128,6 +133,10 @@
       <p>Preview the result, copy it, download a <code>.md</code> file, or open it in Markdown → HTML.</p>
     </div>
   </div>
+  <figure class="page-demo">
+    <img src="../assets/pdf-to-markdown-demo.png" width="1200" height="630" alt="Side-by-side demo: a Field notes PDF converted into Markdown with headings and a checklist" loading="lazy" decoding="async">
+    <figcaption>Sample conversion — PDF text layer in, clean Markdown out. No upload.</figcaption>
+  </figure>
   <p style="margin-top:18px">Going the other way? Try <a href="../markdown-to-pdf/">Markdown to PDF</a>. Have HTML instead? Use <a href="../html-to-markdown/">HTML to Markdown</a>.</p>
 </section>
 
