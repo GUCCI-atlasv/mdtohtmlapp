@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF to Markdown Converter — Free, Local, No Upload | mdtohtml</title>
+<meta name="description" content="Convert PDF to Markdown in your browser. Text-layer PDFs only for now — private, no upload. Copy or download .md.">
+<link rel="canonical" href="https://mdtohtml.app/pdf-to-markdown/">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta property="og:title" content="PDF to Markdown Converter — Free, Local, No Upload">
+<meta property="og:description" content="Convert PDF to Markdown in your browser. Text-layer PDFs only for now — private, no upload. Copy or download .md.">
+<meta property="og:url" content="https://mdtohtml.app/pdf-to-markdown/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mdtohtml.app">
+<meta property="og:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<meta name="twitter:image:alt" content="The mdtohtml.app logo and tagline beside a tabby kitten and a code-print mug">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css?v=1f53051d82">
+<script defer src="https://ccc-monitor.583079497.workers.dev/beacon.js" data-site="mdtohtml.app"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "SoftwareApplication", "name": "PDF to Markdown Converter — mdtohtml",
+      "url": "https://mdtohtml.app/pdf-to-markdown/", "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any (Web)", "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      "description": "Convert PDF to Markdown in your browser. Text-layer PDFs only — private, no upload. Copy or download .md." },
+    { "@type": "FAQPage", "mainEntity": [
+      { "@type": "Question", "name": "How to convert PDF to Markdown?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Drop a text-layer PDF onto the page (or click to choose a file). Conversion runs entirely in your browser with pdf.js. Then copy the Markdown or download a .md file." } },
+      { "@type": "Question", "name": "Is it free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free with no paid tier, no signup, no watermark and no usage limits." } },
+      { "@type": "Question", "name": "Do files upload?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. PDFs stay on your device. Extraction and conversion happen locally in the browser — nothing is uploaded to our servers." } },
+      { "@type": "Question", "name": "Scanned PDFs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not yet. This tool reads the PDF text layer only. Scanned or image-only PDFs need OCR, which we do not run. If little or no text is found, you will see a clear notice." } },
+      { "@type": "Question", "name": "PDF to MD vs DOCX to MD?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PDF to Markdown extracts text from a PDF's text layer and rebuilds readable Markdown locally. DOCX to Markdown starts from a Word document's structured XML (headings, lists, tables) and usually preserves richer formatting. Use PDF when your source is a PDF; use a DOCX converter when you still have the Word file." } }
+    ] }
+  ]
+}
+</script>
+<style>
+.dropzone{max-width:680px;margin:28px auto 0;padding:36px 22px;background:var(--panel);border:1.5px dashed var(--border);border-radius:var(--radius);text-align:center;cursor:pointer;transition:.15s}
+.dropzone:hover,.dropzone.dragover{border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 15%,transparent)}
+.dropzone .dz-icon{width:42px;height:42px;margin:0 auto 12px;border-radius:10px;background:color-mix(in srgb,var(--brand) 12%,transparent);display:flex;align-items:center;justify-content:center;color:var(--brand)}
+.dropzone .dz-title{font-weight:700;font-size:15.5px}
+.dropzone .dz-sub{margin-top:6px;font-size:13px;color:var(--muted)}
+.notice{max-width:680px;margin:16px auto 0;padding:10px 14px;border-radius:10px;background:color-mix(in srgb,var(--brand) 10%,transparent);border:1px solid color-mix(in srgb,var(--brand) 28%,transparent);font-size:13px;color:var(--text);text-align:left}
+.notice strong{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="../"><span class="mark">HTML</span>mdtohtml</a>
+  <div class="nav-right">
+    <a class="nav-text-link" href="../">Markdown → HTML</a>
+    <a class="nav-text-link" href="../html-to-markdown/">HTML → Markdown</a>
+    <a class="nav-text-link" href="../markdown-to-pdf/">Markdown → PDF</a>
+    <button class="mode-toggle" id="modeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+  </div>
+</nav>
+
+<section class="hero" style="padding-bottom:12px">
+  <h1>PDF in. <em>Clean Markdown</em> out.</h1>
+  <p>Convert a text-layer PDF to Markdown in your browser — private, free, no upload. Copy or download <code>.md</code>.</p>
+
+  <div class="dropzone" id="dropZone" role="button" tabindex="0" aria-label="Drop a PDF here or click to choose a file">
+    <div class="dz-icon" aria-hidden="true">
+      <svg class="icon" viewBox="0 0 24 24" style="width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3-3 3 3"/></svg>
+    </div>
+    <div class="dz-title">Drop a PDF here — or click to choose</div>
+    <div class="dz-sub">Runs locally with pdf.js · .pdf only · nothing uploaded</div>
+  </div>
+  <input type="file" id="file" accept="application/pdf,.pdf" hidden>
+
+  <div class="notice" role="note">
+    <strong>Text-layer PDFs only.</strong> Scanned / image-only PDFs need OCR — we do <em>not</em> run OCR yet. If a file has little or no extractable text, you’ll see a clear warning.
+  </div>
+  <div class="url-status" id="status"></div>
+</section>
+
+<main class="app" id="result" style="display:none">
+  <div class="toolbar">
+    <span class="hint" id="fileTitle" style="margin-left:0"></span>
+    <div class="spacer"></div>
+    <span class="hint" id="stats"></span>
+  </div>
+  <div class="panes" style="grid-template-columns:1fr;min-height:380px">
+    <div class="pane">
+      <div class="pane-head">MARKDOWN</div>
+      <textarea id="output" spellcheck="false" aria-label="Markdown output"></textarea>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-primary" id="copyBtn" onclick="copyMd()">Copy Markdown</button>
+    <button class="btn btn-ghost" id="dlBtn" onclick="downloadMd()">Download .md</button>
+    <button class="btn btn-ghost" onclick="sendToConverter()">Open in Markdown → HTML</button>
+    <button class="btn btn-ghost" onclick="resetTool()">Convert another</button>
+    <span class="hint">Private · browser-local · no upload</span>
+  </div>
+</main>
+
+<section class="content">
+  <h2>How to convert PDF to Markdown for free</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="n">01</div><div class="t">Drop a PDF</div>
+      <p>Choose a text-layer PDF from your computer. The file never leaves your browser.</p>
+    </div>
+    <div class="step">
+      <div class="n">02</div><div class="t">We read the text layer</div>
+      <p>pdf.js extracts selectable text and rebuilds readable Markdown — headings guessed from font size.</p>
+    </div>
+    <div class="step">
+      <div class="n">03</div><div class="t">Copy or download .md</div>
+      <p>Preview the result, copy it, download a <code>.md</code> file, or open it in Markdown → HTML.</p>
+    </div>
+  </div>
+  <p style="margin-top:18px">Going the other way? Try <a href="../markdown-to-pdf/">Markdown to PDF</a>. Have HTML instead? Use <a href="../html-to-markdown/">HTML to Markdown</a>.</p>
+</section>
+
+<section class="content" id="faq">
+  <h2>Frequently asked questions</h2>
+  <details><summary>How to convert PDF to Markdown?</summary><p>Drop a text-layer PDF onto the box above (or click to choose a file). Conversion runs in your browser with pdf.js. Then copy the Markdown or download a <code>.md</code> file.</p></details>
+  <details><summary>Is it free?</summary><p>Yes — 100% free with no paid tier, no signup, no credit card, no watermark and no daily limits. Every tool on mdtohtml.app works the same way.</p></details>
+  <details><summary>Do files upload?</summary><p>No. Your PDF stays on your device. Extraction and conversion happen entirely in the browser — nothing is uploaded to our servers.</p></details>
+  <details><summary>Scanned PDFs?</summary><p><strong>Not supported yet.</strong> This tool reads the PDF text layer only. Scanned or image-only PDFs need OCR, and we do <strong>not</strong> run OCR. If little or no text is found, you’ll see a warning instead of empty Markdown.</p></details>
+  <details><summary>PDF to MD vs DOCX to MD?</summary><p>PDF to Markdown extracts text from a PDF’s text layer and rebuilds readable Markdown locally. DOCX to Markdown starts from Word’s structured XML (headings, lists, tables) and usually preserves richer formatting. Use this tool when your source is a PDF; keep the Word file and a DOCX converter when you still have <code>.docx</code>.</p></details>
+</section>
+
+<footer>
+  <span>© 2026 mdtohtml.app — your content never leaves your browser.</span>
+  <span>
+    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="../markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="../">Markdown to HTML</a><a href="../html-to-markdown/">HTML to Markdown</a><a href="../markdown-to-pdf/">Markdown to PDF</a><a href="../html-to-pdf/">HTML to PDF</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
+  </span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var lastName = "document";
+  var converting = false;
+
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+  }
+
+  function setStatus(html) { $("status").innerHTML = html || ""; }
+
+  function lineText(parts) {
+    var out = "";
+    for (var i = 0; i < parts.length; i++) {
+      var it = parts[i];
+      var s = it.str || "";
+      if (!s) continue;
+      if (out && !/\s$/.test(out) && !/^\s/.test(s)) {
+        var prev = parts[i - 1];
+        var gap = 0;
+        if (prev && typeof prev.width === "number") {
+          gap = it.transform[4] - (prev.transform[4] + prev.width);
+        }
+        var size = Math.abs(it.transform[0]) || Math.abs(it.transform[3]) || 12;
+        if (gap > size * 0.25) out += " ";
+      }
+      out += s;
+    }
+    return out.replace(/[ \t]+/g, " ").trim();
+  }
+
+  function reconstructPage(content) {
+    var items = (content.items || []).filter(function (it) {
+      return it && typeof it.str === "string" && it.str.length;
+    });
+    if (!items.length) return "";
+
+    var sizes = items.map(function (it) {
+      return Math.abs(it.transform[0]) || Math.abs(it.transform[3]) || 12;
+    }).filter(function (s) { return s > 0; }).sort(function (a, b) { return a - b; });
+    var median = sizes[Math.floor(sizes.length / 2)] || 12;
+
+    items.sort(function (a, b) {
+      var ya = a.transform[5], yb = b.transform[5];
+      if (Math.abs(ya - yb) > 2) return yb - ya;
+      return a.transform[4] - b.transform[4];
+    });
+
+    var lines = [];
+    var current = [];
+    var currentY = null;
+    var maxSize = 0;
+
+    function flush() {
+      if (!current.length) return;
+      lines.push({ text: lineText(current), size: maxSize });
+      current = [];
+      maxSize = 0;
+      currentY = null;
+    }
+
+    for (var i = 0; i < items.length; i++) {
+      var it = items[i];
+      var y = it.transform[5];
+      var size = Math.abs(it.transform[0]) || Math.abs(it.transform[3]) || 12;
+      var threshold = Math.max(2.5, size * 0.35);
+      if (currentY === null || Math.abs(y - currentY) <= threshold) {
+        current.push(it);
+        maxSize = Math.max(maxSize, size);
+        currentY = currentY === null ? y : (currentY * 0.7 + y * 0.3);
+      } else {
+        flush();
+        current.push(it);
+        maxSize = size;
+        currentY = y;
+      }
+    }
+    flush();
+
+    var mdLines = [];
+    for (var j = 0; j < lines.length; j++) {
+      var t = lines[j].text;
+      if (!t) continue;
+      var s = lines[j].size;
+      if (s >= median * 1.55) mdLines.push("# " + t);
+      else if (s >= median * 1.3) mdLines.push("## " + t);
+      else if (s >= median * 1.12) mdLines.push("### " + t);
+      else mdLines.push(t);
+    }
+    return mdLines.join("\n\n");
+  }
+
+  function convertPdf(file) {
+    if (!file || converting) return;
+    if (!/\.pdf$/i.test(file.name) && file.type !== "application/pdf") {
+      setStatus('<span class="warn">Please choose a .pdf file.</span>');
+      return;
+    }
+    if (!window.pdfjsLib) {
+      setStatus('<span class="warn">pdf.js failed to load. Check your network and reload.</span>');
+      return;
+    }
+
+    converting = true;
+    lastName = file.name.replace(/\.pdf$/i, "") || "document";
+    setStatus("Reading PDF…");
+    $("result").style.display = "none";
+
+    file.arrayBuffer().then(function (buf) {
+      setStatus("Extracting text…");
+      return pdfjsLib.getDocument({ data: buf }).promise;
+    }).then(function (pdf) {
+      var pageTexts = [];
+      var totalChars = 0;
+      var i = 1;
+
+      function next() {
+        if (i > pdf.numPages) {
+          return {
+            pages: pdf.numPages,
+            chars: totalChars,
+            md: pageTexts.filter(Boolean).join(pdf.numPages > 1 ? "\n\n---\n\n" : "\n\n")
+          };
+        }
+        return pdf.getPage(i).then(function (page) {
+          return page.getTextContent().then(function (content) {
+            var text = reconstructPage(content);
+            if (pdf.numPages > 1 && text) {
+              pageTexts.push("<!-- Page " + i + " -->\n\n" + text);
+            } else if (text) {
+              pageTexts.push(text);
+            } else {
+              pageTexts.push("");
+            }
+            totalChars += (text || "").replace(/\s+/g, "").length;
+            i += 1;
+            return next();
+          });
+        });
+      }
+      return next();
+    }).then(function (res) {
+      if (res.chars < 20) {
+        $("output").value = "";
+        $("fileTitle").textContent = file.name;
+        $("stats").textContent = res.pages + " page" + (res.pages === 1 ? "" : "s") + " · little/no text";
+        $("result").style.display = "block";
+        setStatus('<span class="warn">Little or no extractable text — this looks like a scanned / image-only PDF. OCR is not supported yet (text-layer PDFs only).</span>');
+        $("result").scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      $("output").value = res.md.trim() + "\n";
+      $("fileTitle").textContent = file.name;
+      $("stats").textContent = res.pages + " page" + (res.pages === 1 ? "" : "s") + " · " + res.md.length.toLocaleString() + " chars";
+      $("result").style.display = "block";
+      setStatus("");
+      $("result").scrollIntoView({ behavior: "smooth", block: "start" });
+      toast("Converted " + file.name);
+    }).catch(function (err) {
+      console.error(err);
+      setStatus('<span class="warn">Could not read that PDF. Try another text-layer file.</span>');
+    }).finally(function () {
+      converting = false;
+    });
+  }
+
+  var drop = $("dropZone");
+  var fileInput = $("file");
+  drop.addEventListener("click", function () { fileInput.click(); });
+  drop.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); }
+  });
+  fileInput.addEventListener("change", function (e) {
+    var f = e.target.files && e.target.files[0];
+    e.target.value = "";
+    if (f) convertPdf(f);
+  });
+  ["dragover", "dragenter"].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add("dragover"); });
+  });
+  ["dragleave", "drop"].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove("dragover"); });
+  });
+  drop.addEventListener("drop", function (e) {
+    var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) convertPdf(f);
+  });
+
+  window.copyMd = function () {
+    var v = $("output").value;
+    if (!v) { toast("Nothing to copy"); return; }
+    navigator.clipboard.writeText(v).then(function () { toast("Markdown copied"); });
+  };
+  window.downloadMd = function () {
+    var v = $("output").value;
+    if (!v) { toast("Nothing to download"); return; }
+    var name = lastName.toLowerCase().replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "-").slice(0, 60) || "document";
+    var blob = new Blob([v], { type: "text/markdown" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = name + ".md"; a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+    toast("Downloaded " + name + ".md");
+  };
+  window.sendToConverter = function () {
+    var v = $("output").value;
+    if (!v) { toast("Convert a PDF first"); return; }
+    try { localStorage.setItem("mdh-draft", v); } catch (e) {}
+    location.href = "../";
+  };
+  window.resetTool = function () {
+    $("output").value = "";
+    $("result").style.display = "none";
+    setStatus("");
+    fileInput.click();
+  };
+
+  var tt;
+  function toast(msg) {
+    var t = $("toast"); t.textContent = msg; t.classList.add("show");
+    clearTimeout(tt); tt = setTimeout(function () { t.classList.remove("show"); }, 2200);
+  }
+  window.toast = toast;
+  $("modeToggle").onclick = function () {
+    var el = document.documentElement;
+    el.dataset.theme = el.dataset.theme === "dark" ? "" : "dark";
+    try { localStorage.setItem("mdh-mode", el.dataset.theme || "light"); } catch (e) {}
+  };
+  try { if (localStorage.getItem("mdh-mode") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}
+})();
+</script>
+</body>
+</html>

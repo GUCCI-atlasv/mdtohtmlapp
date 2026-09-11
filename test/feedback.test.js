@@ -32,6 +32,7 @@ test("public pages expose feedback and the support email", () => {
     "index.html",
     "404.html",
     "html-to-markdown/index.html",
+    "pdf-to-markdown/index.html",
     "html-to-pdf/index.html",
     "markdown-to-pdf/index.html",
     "markdown-cheatsheet/index.html",

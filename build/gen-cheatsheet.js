@@ -183,6 +183,7 @@ const html = `<!DOCTYPE html>
   <div class="nav-right">
     <a class="nav-text-link" href="../">Markdown → HTML</a>
     <a class="nav-text-link" href="../html-to-markdown/">HTML → Markdown</a>
+    <a class="nav-text-link" href="../pdf-to-markdown/">PDF → Markdown</a>
     <a class="nav-text-link" href="../markdown-to-pdf/">Markdown → PDF</a>
     <a class="nav-text-link" href="../html-to-pdf/">HTML → PDF</a>
     <button class="mode-toggle" id="modeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
@@ -273,7 +274,7 @@ const html = `<!DOCTYPE html>
 
 <footer>
   <span>© 2026 mdtohtml.app · ${escapeHtml(content.meta.verified)}</span>
-  <span><a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="../">Markdown to HTML</a><a href="../html-to-markdown/">HTML to Markdown</a><a href="../markdown-to-pdf/">Markdown to PDF</a><a href="../html-to-pdf/">HTML to PDF</a><a href="../extension.zip?v=1.4.0" download>Browser Extension</a><a href="/privacy/">Privacy</a></span>
+  <span><a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="../">Markdown to HTML</a><a href="../html-to-markdown/">HTML to Markdown</a><a href="../pdf-to-markdown/">PDF to Markdown</a><a href="../markdown-to-pdf/">Markdown to PDF</a><a href="../html-to-pdf/">HTML to PDF</a><a href="../extension.zip?v=1.4.0" download>Browser Extension</a><a href="/privacy/">Privacy</a></span>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.CHEATSHEET_DATA=${jsonForScript({

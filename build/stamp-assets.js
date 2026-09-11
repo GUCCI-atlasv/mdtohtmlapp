@@ -19,6 +19,7 @@ const HTML_FILES = [
   "privacy/index.html",
   "feedback/index.html",
   "html-to-markdown/index.html",
+  "pdf-to-markdown/index.html",
   "markdown-to-pdf/index.html",
   "html-to-pdf/index.html",
   "markdown-cheatsheet/index.html"

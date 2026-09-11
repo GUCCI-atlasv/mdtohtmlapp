@@ -15,7 +15,7 @@ test("the 404 page exists and is kept out of the index", () => {
 });
 
 test("the 404 page links to every tool and the cheat sheet", () => {
-  for (const target of ["/", "/html-to-markdown/", "/markdown-to-pdf/", "/html-to-pdf/", "/markdown-cheatsheet/"]) {
+  for (const target of ["/", "/html-to-markdown/", "/pdf-to-markdown/", "/markdown-to-pdf/", "/html-to-pdf/", "/markdown-cheatsheet/"]) {
     assert.ok(source.includes(`href="${target}"`), `missing link to ${target}`);
   }
 });

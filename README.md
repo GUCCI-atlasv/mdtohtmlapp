@@ -14,6 +14,7 @@ Free browser-based converters for Markdown, HTML and PDF — no signup, no water
 |------|-----|----------------|
 | Markdown → HTML | [/](https://mdtohtml.app/) | Paste or drop `.md`, live themed preview, copy/download/share |
 | HTML → Markdown | [/html-to-markdown/](https://mdtohtml.app/html-to-markdown/) | URL or raw HTML → clean GFM Markdown |
+| PDF → Markdown | [/pdf-to-markdown/](https://mdtohtml.app/pdf-to-markdown/) | Text-layer PDF → Markdown (browser-local, no OCR) |
 | Markdown → PDF | [/markdown-to-pdf/](https://mdtohtml.app/markdown-to-pdf/) | Themed PDF with KaTeX math & Mermaid diagrams |
 | HTML → PDF | [/html-to-pdf/](https://mdtohtml.app/html-to-pdf/) | URL or HTML → themed preview → Save as PDF |
 | Cheat sheet | [/markdown-cheatsheet/](https://mdtohtml.app/markdown-cheatsheet/) | Syntax, exact HTML output, playground & fixes |
@@ -37,6 +38,7 @@ Static site (no app server):
 
 - [marked](https://github.com/markedjs/marked) 12 + [DOMPurify](https://github.com/cure53/DOMPurify)
 - [Turndown](https://github.com/mixmark-io/turndown) (+ GFM) for HTML → Markdown
+- [pdf.js](https://mozilla.github.io/pdf.js/) for PDF → Markdown (text layer only)
 - KaTeX + Mermaid on the PDF tools
 - Cloudflare Pages (`_headers`, `_redirects`, Functions middleware for canonical URLs)
 
@@ -72,6 +74,7 @@ Or connect the repo to Cloudflare Pages / Vercel / Netlify and set the build com
 ```
 index.html                 Markdown → HTML converter
 html-to-markdown/          HTML → Markdown
+pdf-to-markdown/           PDF → Markdown
 markdown-to-pdf/           Markdown → PDF
 html-to-pdf/               HTML → PDF
 markdown-cheatsheet/       Generated reference page

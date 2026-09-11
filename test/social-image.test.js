@@ -12,6 +12,7 @@ const CARD_FILE = path.join(root, "assets", "og-card.jpg");
 const SHARED_PAGES = [
   "index.html",
   "html-to-markdown/index.html",
+  "pdf-to-markdown/index.html",
   "markdown-to-pdf/index.html",
   "html-to-pdf/index.html",
   "markdown-cheatsheet/index.html"
