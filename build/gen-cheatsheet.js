@@ -149,6 +149,7 @@ const html = `<!DOCTYPE html>
 <title>${escapeHtml(content.meta.title)}</title>
 <meta name="description" content="${escapeHtml(content.meta.description)}">
 <link rel="canonical" href="${escapeHtml(content.meta.canonical)}">
+<link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta property="og:title" content="${escapeHtml(content.meta.title)}">
 <meta property="og:description" content="${escapeHtml(content.meta.description)}">
