@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PDF to Markdown Converter — Free, Local, No Upload | mdtohtml</title>
-<meta name="description" content="Convert PDF to Markdown in your browser. Text-layer PDFs only for now — private, no upload. Copy or download .md.">
+<title>PDF to Markdown — Free Local Converter, No Upload | mdtohtml</title>
+<meta name="description" content="Free local PDF to Markdown — no upload. Text-layer only; scanned PDFs need OCR (not on the free path).">
 <link rel="canonical" href="https://mdtohtml.app/pdf-to-markdown/">
 <link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<meta property="og:title" content="PDF to Markdown Converter — Free, Local, No Upload">
-<meta property="og:description" content="Convert PDF to Markdown in your browser. Text-layer PDFs only for now — private, no upload. Copy or download .md.">
+<meta property="og:title" content="PDF to Markdown — Free Local Converter, No Upload">
+<meta property="og:description" content="Free local PDF to Markdown — no upload. Text-layer only; scanned PDFs need OCR (not on the free path).">
 <meta property="og:url" content="https://mdtohtml.app/pdf-to-markdown/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="mdtohtml.app">
@@ -31,11 +31,11 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "SoftwareApplication", "name": "PDF to Markdown Converter — mdtohtml",
+    { "@type": "SoftwareApplication", "name": "PDF to Markdown — Free Local Converter | mdtohtml",
       "url": "https://mdtohtml.app/pdf-to-markdown/", "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Any (Web)", "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      "description": "Convert PDF to Markdown in your browser. Text-layer PDFs only — private, no upload. Copy or download .md." },
+      "description": "Free local PDF to Markdown — no upload. Text-layer only; scanned PDFs need OCR (not on the free path)." },
     { "@type": "FAQPage", "mainEntity": [
       { "@type": "Question", "name": "How to convert PDF to Markdown?",
         "acceptedAnswer": { "@type": "Answer", "text": "Drop a text-layer PDF onto the page (or click to choose a file). Conversion runs entirely in your browser with pdf.js. Then copy the Markdown or download a .md file." } },
@@ -44,7 +44,7 @@
       { "@type": "Question", "name": "Do files upload?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. PDFs stay on your device. Extraction and conversion happen locally in the browser — nothing is uploaded to our servers." } },
       { "@type": "Question", "name": "Scanned PDFs?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Not yet. This tool reads the PDF text layer only. Scanned or image-only PDFs need OCR, which we do not run. If little or no text is found, you will see a clear notice." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Not on the free path. This tool reads the PDF text layer only (selectable text). Scanned or image-only PDFs need OCR, which we do not run for free. If little or no text is found, you will see a clear notice." } },
       { "@type": "Question", "name": "PDF to MD vs DOCX to MD?",
         "acceptedAnswer": { "@type": "Answer", "text": "PDF to Markdown extracts text from a PDF's text layer and rebuilds readable Markdown locally. DOCX to Markdown starts from a Word document's structured XML (headings, lists, tables) and usually preserves richer formatting. Use PDF when your source is a PDF; use a DOCX converter when you still have the Word file." } }
     ] }
@@ -78,8 +78,8 @@
 </nav>
 
 <section class="hero" style="padding-bottom:12px">
-  <h1>PDF in. <em>Clean Markdown</em> out.</h1>
-  <p>Convert a text-layer PDF to Markdown in your browser — private, free, no upload. Copy or download <code>.md</code>.</p>
+  <h1>PDF to Markdown (text-layer, local)</h1>
+  <p>Works on PDFs with selectable text (a text layer). Free, local, no upload — copy or download <code>.md</code>. Scanned or image-only PDFs need OCR; that is <strong>not</strong> on the free path.</p>
   <img class="page-hero-img" src="../assets/pdf-to-markdown-hero.png" width="1600" height="900" alt="Drop a PDF and preview clean Markdown — PDF to Markdown workflow on mdtohtml.app" decoding="async" fetchpriority="high">
 
   <div class="dropzone" id="dropZone" role="button" tabindex="0" aria-label="Drop a PDF here or click to choose a file">
@@ -92,7 +92,7 @@
   <input type="file" id="file" accept="application/pdf,.pdf" hidden>
 
   <div class="notice" role="note">
-    <strong>Text-layer PDFs only.</strong> Scanned / image-only PDFs need OCR — we do <em>not</em> run OCR yet. If a file has little or no extractable text, you’ll see a clear warning.
+    <strong>Text-layer only.</strong> This free tool reads selectable PDF text. Scanned / image-only PDFs need OCR — <em>not</em> on the free path. If little or no text is found, you’ll see a clear warning.
   </div>
   <div class="url-status" id="status"></div>
 </section>
@@ -146,7 +146,7 @@
   <details><summary>How to convert PDF to Markdown?</summary><p>Drop a text-layer PDF onto the box above (or click to choose a file). Conversion runs in your browser with pdf.js. Then copy the Markdown or download a <code>.md</code> file.</p></details>
   <details><summary>Is it free?</summary><p>Yes — 100% free with no paid tier, no signup, no credit card, no watermark and no daily limits. Every tool on mdtohtml.app works the same way.</p></details>
   <details><summary>Do files upload?</summary><p>No. Your PDF stays on your device. Extraction and conversion happen entirely in the browser — nothing is uploaded to our servers.</p></details>
-  <details><summary>Scanned PDFs?</summary><p><strong>Not supported yet.</strong> This tool reads the PDF text layer only. Scanned or image-only PDFs need OCR, and we do <strong>not</strong> run OCR. If little or no text is found, you’ll see a warning instead of empty Markdown.</p></details>
+  <details><summary>Scanned PDFs?</summary><p><strong>Not on the free path.</strong> This tool reads the PDF text layer only (selectable text). Scanned or image-only PDFs need OCR, which we do <strong>not</strong> run for free. If little or no text is found, you’ll see a warning instead of empty Markdown.</p></details>
   <details><summary>PDF to MD vs DOCX to MD?</summary><p>PDF to Markdown extracts text from a PDF’s text layer and rebuilds readable Markdown locally. DOCX to Markdown starts from Word’s structured XML (headings, lists, tables) and usually preserves richer formatting. Use this tool when your source is a PDF; keep the Word file and a DOCX converter when you still have <code>.docx</code>.</p></details>
 </section>
 
@@ -309,7 +309,7 @@
         $("fileTitle").textContent = file.name;
         $("stats").textContent = res.pages + " page" + (res.pages === 1 ? "" : "s") + " · little/no text";
         $("result").style.display = "block";
-        setStatus('<span class="warn">Little or no extractable text — this looks like a scanned / image-only PDF. OCR is not supported yet (text-layer PDFs only).</span>');
+        setStatus('<span class="warn">Little or no extractable text — this looks like a scanned / image-only PDF. OCR is not on the free path (text-layer PDFs only).</span>');
         $("result").scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
