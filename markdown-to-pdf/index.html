@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Markdown to PDF — LaTeX Math, Mermaid Diagrams, No Watermark | mdtohtml</title>
-<meta name="description" content="Free Markdown to PDF converter with LaTeX math (KaTeX), Mermaid diagrams, tables, code blocks and TOC. No signup, no limits, no watermark — runs in your browser, nothing uploaded.">
+<title>Markdown to PDF — Free Converter, No Watermark | mdtohtml</title>
+<meta name="description" content="Convert Markdown to PDF in your browser. Free Markdown to PDF converter with math, diagrams, tables and TOC — no signup, no watermark, nothing uploaded.">
 <link rel="canonical" href="https://mdtohtml.app/markdown-to-pdf/">
-<link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<meta property="og:title" content="Free Markdown to PDF — LaTeX math, Mermaid diagrams, no watermark">
-<meta property="og:description" content="Polished PDFs with math, diagrams, tables & TOC — all in your browser. 100% free, no signup, no limits.">
+<meta property="og:title" content="Markdown to PDF — Free Converter, No Watermark | mdtohtml">
+<meta property="og:description" content="Convert Markdown to PDF in your browser. Free Markdown to PDF converter with math, diagrams, tables and TOC — no signup, no watermark, nothing uploaded.">
 <meta property="og:url" content="https://mdtohtml.app/markdown-to-pdf/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="mdtohtml.app">
@@ -36,16 +35,18 @@
       "url": "https://mdtohtml.app/markdown-to-pdf/", "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Any (Web)", "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      "description": "Free Markdown to PDF converter — themed output with LaTeX math (KaTeX) and Mermaid diagrams, entirely in your browser. No signup, no limits, no watermark." },
-    { "@type": "FAQPage", "mainEntity": [
+      "description": "Convert Markdown to PDF in your browser — themed output with KaTeX math, Mermaid diagrams, tables and TOC. No signup, no watermark, nothing uploaded." },
+        { "@type": "FAQPage", "mainEntity": [
       { "@type": "Question", "name": "Is this Markdown to PDF converter free?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free with no paid tier, no signup, no credit card, no watermark and unlimited exports." } },
-      { "@type": "Question", "name": "Does it support LaTeX math and diagrams?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Inline $...$ and block $$...$$ equations render with KaTeX, and fenced mermaid code blocks render as diagrams — in both the preview and the exported PDF." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. No signup, no watermark, no page limits on the free tool." } },
       { "@type": "Question", "name": "How does the PDF export work?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Your markdown is rendered into a themed page and opened in your browser's print dialog — choose 'Save as PDF'. Everything happens locally; nothing is uploaded." } },
-      { "@type": "Question", "name": "Are tables, code blocks and a table of contents included?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. GFM tables, fenced code blocks and task lists render correctly, and a table of contents is added automatically for longer documents." } }
+        "acceptedAnswer": { "@type": "Answer", "text": "The PDF PREVIEW pane renders in your browser. Export PDF opens that preview in a print view on your device — choose Save as PDF. Nothing is uploaded." } },
+      { "@type": "Question", "name": "Does it support LaTeX math and diagrams?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. KaTeX renders inline and block math, Mermaid renders fenced diagram blocks, and GFM tables, code blocks, and an automatic table of contents (when the document has four or more headings) are included in preview and export." } },
+      { "@type": "Question", "name": "Can I control page size and margins?",
+        "acceptedAnswer": { "@type": "Answer", "text": "This page does not expose separate page-size or margin controls in the toolbar. Default print CSS uses an 18mm page margin. When you click Export PDF, your browser print dialog lets you choose paper size (such as A4 or Letter), margins, and orientation." } },
+      { "@type": "Question", "name": "Is my Markdown uploaded?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Conversion runs locally in the browser." } }
     ] }
   ]
 }
@@ -60,13 +61,14 @@
     <a class="nav-text-link" href="../html-to-markdown/">HTML → Markdown</a>
     <a class="nav-text-link" href="../pdf-to-markdown/">PDF → Markdown</a>
     <a class="nav-text-link" href="../html-to-pdf/">HTML → PDF</a>
+    <a class="nav-text-link" href="/blog/">Blog</a>
     <button class="mode-toggle" id="modeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
   </div>
 </nav>
 
 <section class="hero" style="padding-bottom:24px">
-  <h1>Markdown in. <em>A polished PDF</em> out.</h1>
-  <p>LaTeX math, Mermaid diagrams, tables, code blocks and an automatic table of contents — pick a theme, preview, export. Free, no signup, no watermark.</p>
+  <h1>Markdown to PDF</h1>
+  <p>Free Markdown to PDF converter with KaTeX math, Mermaid diagrams, tables, code blocks and an automatic table of contents — pick a theme, preview, export. No signup, no watermark, nothing uploaded.</p>
   <div class="privacy-badge"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Your markdown never leaves your browser</div>
 </section>
 
@@ -99,31 +101,31 @@
 </main>
 
 <section class="content">
-  <h2>How to convert Markdown to PDF for free</h2>
+  <h2>What this Markdown to PDF converter does</h2>
+  <p>This page is a free <strong>Markdown to PDF</strong> converter for documents you already have as Markdown — READMEs, AI exports, meeting notes, specs, and reports. Paste Markdown into the editor, upload a <code>.md</code> file, or drag and drop onto the MARKDOWN pane. The PDF PREVIEW pane shows a themed layout. When the preview looks right, click <strong>Export PDF</strong> and choose <strong>Save as PDF</strong> in your browser print dialog.</p>
+  <p>Unlike copy-paste into a word processor, the preview here is built for Markdown: headings, lists, GitHub Flavored Markdown tables, fenced code, task lists, KaTeX math, and Mermaid diagrams. An automatic table of contents appears when the document has four or more headings. Themes (GitHub, Docs, Magazine, Minimal) change typography and spacing so the PDF reads like a finished handout rather than raw source.</p>
+  <p>The job on this URL is a printable or shareable PDF. If you need shareable HTML instead, use the homepage <a href="../">Markdown to HTML</a> converter. If you are going the other direction — HTML or a page URL into Markdown — use <a href="../html-to-markdown/">HTML to Markdown</a>. To pull text from an existing PDF, try <a href="../pdf-to-markdown/">PDF to Markdown</a> (text-layer PDFs).</p>
+  <p>Everything for Markdown → PDF runs in your browser. Your source is not uploaded to mdtohtml servers for conversion. That matters when notes include customer names, unreleased product copy, or internal links you would rather keep local.</p>
+</section>
+
+<section class="content">
+  <h2>How to convert Markdown to PDF</h2>
   <div class="steps">
     <div class="step">
       <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="s1t">
         <title id="s1t">Paste markdown into the editor, or drop a .md file</title>
-      
-        <!-- editor / drop zone -->
         <rect x="10" y="16" width="150" height="104" rx="9"
               fill="var(--panel,#ffffff)" stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-dasharray="6 5"/>
-      
-        <!-- markdown sample: syntax chars in accent, content muted -->
         <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="11">
           <text x="24" y="43"><tspan fill="var(--brand,#D97757)">#</tspan><tspan fill="var(--muted,#666666)"> Release notes</tspan></text>
           <text x="24" y="63"><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)">v2.1</tspan><tspan fill="var(--brand,#D97757)">**</tspan><tspan fill="var(--muted,#666666)"> shipped</tspan></text>
           <text x="24" y="83"><tspan fill="var(--brand,#D97757)">-</tspan><tspan fill="var(--muted,#666666)"> Faster export</tspan></text>
           <text x="24" y="103"><tspan fill="var(--brand,#D97757)">|</tspan><tspan fill="var(--muted,#666666)"> Metric </tspan><tspan fill="var(--brand,#D97757)">|</tspan><tspan fill="var(--muted,#666666)"> Q3 </tspan><tspan fill="var(--brand,#D97757)">|</tspan></text>
         </g>
-      
-        <!-- drop arrow -->
         <g stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-linecap="round" fill="none">
           <path d="M196 68 H176" stroke-dasharray="4 4"/>
           <path d="M174 63 l-6 5 l6 5"/>
         </g>
-      
-        <!-- .md file chip -->
         <g transform="rotate(-7 233 68)">
           <path d="M209 30 h38 l20 20 v47 a9 9 0 0 1 -9 9 h-49 a9 9 0 0 1 -9 -9 v-58 a9 9 0 0 1 9 -9 z"
                 fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
@@ -134,14 +136,12 @@
                 font-size="12" font-weight="600" fill="var(--brand,#D97757)">.md</text>
         </g>
       </svg>
-      <div class="n">01</div><div class="t">Paste or drop</div>
-      <p>Paste markdown from ChatGPT, Claude or your editor — or drop a .md file.</p>
+      <div class="n">01</div><div class="t">Paste or Upload .md</div>
+      <p>Use <strong>Upload .md</strong>, paste into the MARKDOWN pane, or drag a file onto the editor (…or paste / drag &amp; drop onto the editor).</p>
     </div>
     <div class="step">
       <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="s2t">
         <title id="s2t">Pick one of four themes, in light or dark mode</title>
-      
-        <!-- card A — selected -->
         <rect x="16" y="14" width="80" height="100" rx="8"
               fill="var(--panel,#ffffff)" stroke="var(--brand,#D97757)" stroke-width="2"/>
         <rect x="28" y="30" width="40" height="6" rx="3" fill="var(--brand,#D97757)"/>
@@ -151,12 +151,8 @@
           <rect x="28" y="68" width="56" height="4" rx="2"/>
           <rect x="28" y="79" width="34" height="4" rx="2"/>
         </g>
-        <rect x="28" y="92" width="24" height="10" rx="3" fill="var(--muted,#666666)" opacity=".18"/>
-        <!-- selected badge -->
         <circle cx="96" cy="14" r="10" fill="var(--brand,#D97757)"/>
         <path d="M91.5 14 l3 3 l6 -6" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      
-        <!-- card B -->
         <rect x="110" y="14" width="80" height="100" rx="8"
               fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
         <rect x="122" y="30" width="34" height="6" rx="3" fill="var(--muted,#666666)" opacity=".5"/>
@@ -167,8 +163,6 @@
           <rect x="122" y="79" width="40" height="4" rx="2"/>
           <rect x="122" y="90" width="50" height="4" rx="2"/>
         </g>
-      
-        <!-- card C — dark mode -->
         <rect x="204" y="14" width="80" height="100" rx="8" fill="#0d0d0d" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
         <rect x="216" y="30" width="34" height="6" rx="3" fill="#E8927C"/>
         <g fill="#ffffff" opacity=".28">
@@ -178,28 +172,23 @@
           <rect x="216" y="79" width="36" height="4" rx="2"/>
           <rect x="216" y="90" width="50" height="4" rx="2"/>
         </g>
-      
-        <!-- labels -->
         <g font-family="'Geist', -apple-system, sans-serif" font-size="9" fill="var(--muted,#666666)" text-anchor="middle">
           <text x="56" y="128">GitHub</text>
           <text x="150" y="128">Magazine</text>
           <text x="244" y="128">Dark</text>
         </g>
       </svg>
-      <div class="n">02</div><div class="t">Pick a theme</div>
-      <p>GitHub, Docs, Magazine or Minimal — the preview shows exactly what you'll get.</p>
+      <div class="n">02</div><div class="t">Theme + PDF PREVIEW</div>
+      <p>Choose a theme from the toolbar select (<em>Theme: …</em>). Watch the <strong>PDF PREVIEW</strong> iframe update as you edit.</p>
     </div>
     <div class="step">
       <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="p3t">
         <title id="p3t">Export opens the print dialog — choose Save as PDF, with no watermark</title>
-      
-        <!-- print dialog -->
         <rect x="12" y="14" width="150" height="104" rx="8"
               fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
         <path d="M12 34 H162" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
         <text x="26" y="28" font-family="'Geist', -apple-system, sans-serif" font-size="10"
               font-weight="500" fill="var(--text,#000000)">Print</text>
-      
         <text x="26" y="52" font-family="'Geist', -apple-system, sans-serif" font-size="9"
               fill="var(--muted,#666666)">Destination</text>
         <rect x="24" y="58" width="126" height="24" rx="6"
@@ -208,19 +197,14 @@
               font-weight="500" fill="var(--text,#000000)">Save as PDF</text>
         <path d="M133 68 l4 4 l6 -7" fill="none" stroke="var(--brand,#D97757)" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round"/>
-      
         <g fill="var(--muted,#666666)" opacity=".3">
           <rect x="24" y="92" width="60" height="4" rx="2"/>
           <rect x="24" y="102" width="46" height="4" rx="2"/>
         </g>
-      
-        <!-- arrow -->
         <g stroke="var(--brand,#D97757)" stroke-width="1.5" stroke-linecap="round" fill="none">
           <path d="M170 66 H186"/>
           <path d="M182 61 l5 5 l-5 5"/>
         </g>
-      
-        <!-- pdf page -->
         <path d="M206 20 h44 l24 24 v58 a8 8 0 0 1 -8 8 h-60 a8 8 0 0 1 -8 -8 v-74 a8 8 0 0 1 8 -8 z"
               fill="var(--panel,#ffffff)" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
         <path d="M250 20 v24 h24" fill="none" stroke="var(--border,#eaeaea)" stroke-width="1.5"/>
@@ -234,25 +218,76 @@
               font-size="11" font-weight="600" fill="var(--brand,#D97757)">PDF</text>
       </svg>
       <div class="n">03</div><div class="t">Export PDF</div>
-      <p>Click Export and choose "Save as PDF" in the print dialog. No watermark, no upload.</p>
+      <p>Click <strong>Export PDF</strong>. Allow the pop-up if asked, then choose <strong>Save as PDF</strong>. Optional: <strong>Download .html</strong> for the same themed document as HTML.</p>
     </div>
   </div>
-  <p style="margin-top:18px">If a table, image, list, or line break looks wrong, check the <a href="../markdown-cheatsheet/">Markdown cheat sheet and troubleshooting guide</a>, then return to the preview.</p>
+  <p style="margin-top:18px">If a table, image, list, or line break looks wrong, check the <a href="../markdown-cheatsheet/">Markdown cheat sheet and troubleshooting guide</a>, then return to the preview. For syntax that only matters in HTML output, the homepage <a href="../">Markdown to HTML</a> tool uses the same rendering stack for themes and math.</p>
+  <p>Typical flow in one line: paste or <strong>Upload .md</strong> → pick <em>Theme</em> → confirm <strong>PDF PREVIEW</strong> → <strong>Export PDF</strong> → <strong>Save as PDF</strong>. Char and line counts appear in the toolbar hint so you can sanity-check large pastes before exporting.</p>
+</section>
+
+<section class="content">
+  <h2>Math, Mermaid, tables, code, TOC</h2>
+  <p>Capability claims below match the live tool on this page (verified against <code>assets/render.js</code> and the sample document loaded in the editor).</p>
+  <ul>
+    <li><strong>KaTeX math</strong> — Inline <code>$...$</code> and block <code>$$...$$</code> equations render in the preview and in the exported print view.</li>
+    <li><strong>Mermaid diagrams</strong> — Fenced blocks marked <code>mermaid</code> (for example flowcharts) render as diagrams in preview and export.</li>
+    <li><strong>Tables &amp; code</strong> — GFM tables, fenced code blocks, and task lists are supported in the themed document.</li>
+    <li><strong>Table of contents</strong> — When the document has four or more headings (h1–h3), a Contents nav is inserted automatically at the top of the document. Shorter docs skip the TOC.</li>
+  </ul>
+  <p>The sample Markdown already in the editor demonstrates math, a Mermaid flowchart, a table, and a code block so you can click <strong>Export PDF</strong> without preparing a file first. Replace the sample with your own notes when you are ready.</p>
+  <p>Theme choice affects how those elements look on the page, but it does not remove math or diagram support. If a Mermaid block fails to parse, the export still includes the rest of the document; fix the diagram syntax and the preview will update when you edit.</p>
+  <p>For day-to-day writing reference — emphasis, links, images, nested lists — keep the <a href="../markdown-cheatsheet/">Markdown cheat sheet</a> open in another tab. When you need Markdown back from HTML you scraped or saved, jump to <a href="../html-to-markdown/">HTML to Markdown</a> and paste or convert a URL, then return here for PDF export.</p>
+</section>
+
+<section class="content">
+  <h2>Page size, margins, and print tips</h2>
+  <p>This Markdown to PDF page does <strong>not</strong> show dedicated page-size or margin fields in the toolbar. The only layout controls above the fold are <strong>Upload .md</strong>, the theme select, and the editor itself. Print CSS shipped with the export sets a default <code>@page</code> margin of <strong>18mm</strong> and avoids breaking inside pre blocks, tables, blockquotes, and images where the browser allows.</p>
+  <p>Paper size (A4, Letter, and others), custom margins, and orientation come from your <strong>browser print dialog</strong> after <strong>Export PDF</strong>. Themes are readable on A4 and US Letter; if headers feel tight, widen margins in the dialog or shorten long unbroken code lines in the source.</p>
+  <p>Tips that usually help:</p>
+  <ul>
+    <li>Confirm <strong>PDF PREVIEW</strong> before exporting — what you see is what the print view starts from.</li>
+    <li>Allow pop-ups for this site if <strong>Export PDF</strong> is blocked; the tool opens a blob window for printing.</li>
+    <li>Turn on background graphics in the print dialog if a theme uses colored heading accents you want preserved.</li>
+    <li>Very wide tables may need a landscape orientation or slightly smaller margins in the dialog.</li>
+    <li>Use <strong>Download .html</strong> when you want to archive the themed document or open it later without re-pasting Markdown.</li>
+  </ul>
+  <p>There is no watermark and no account gate on export. If you need HTML you can host or email as a single file, prefer the homepage <a href="../">Markdown to HTML</a> flow; this page is optimized for the print/PDF path.</p>
+</section>
+
+<section class="content">
+  <h2>Markdown to PDF vs Markdown to HTML</h2>
+  <p>Both tools share local rendering ideas — themes, privacy, and rich Markdown — but the deliverable differs:</p>
+  <ul>
+    <li><strong>Markdown to PDF (this page)</strong> — Best when the artifact must be attached, printed, or archived as PDF. Export goes through the browser print dialog.</li>
+    <li><strong><a href="../">Markdown to HTML</a></strong> — Best when you want a self-contained HTML page to share or publish without forcing a PDF reader.</li>
+    <li><strong><a href="../html-to-markdown/">HTML to Markdown</a></strong> — Reverse direction: clean Markdown from a URL or pasted HTML, then optionally bring that Markdown back here for PDF.</li>
+    <li><strong><a href="../pdf-to-markdown/">PDF to Markdown</a></strong> — Extract a text layer from a PDF into Markdown (not OCR for scans).</li>
+  </ul>
+  <p>A practical loop for research notes: convert a public article with HTML to Markdown, tidy headings in your editor, then use Markdown to PDF for a reading packet. For engineering READMEs that must stay on GitHub as Markdown but also go to stakeholders as PDF, keep the <code>.md</code> as source of truth and export from this page when you need the packet.</p>
+  <p>Do not treat PDF as a substitute for editable source. Keep the Markdown file; regenerate the PDF when the source changes. That avoids drifting copies and keeps math and Mermaid regenerable.</p>
+</section>
+
+<section class="content">
+  <h2>Privacy: nothing uploaded</h2>
+  <p>Markdown → PDF on mdtohtml.app is designed so conversion stays on your device. The MARKDOWN editor, theme selection, PDF PREVIEW iframe, and Export PDF print view all run in the browser. Your Markdown is not sent to mdtohtml for rendering.</p>
+  <p>Third-party CDNs may load libraries such as marked, DOMPurify, KaTeX, and Mermaid so the page can render. That is separate from uploading your document body to our servers. If you work on a locked-down network, confirm those script hosts are allowed, or download the themed HTML when online and print offline later.</p>
+  <p>Drafts can be shared with the homepage converter through browser localStorage when you jump between tools — still on your device, not a cloud project folder. Clear site data if you use a shared computer after pasting sensitive notes.</p>
+  <p>We do not add a watermark, and we do not require signup to export. If your compliance review needs “no upload for document conversion,” this page’s local export path is the feature that matters.</p>
 </section>
 
 <section class="content" id="faq">
-  <h2>Frequently asked questions</h2>
-  <details><summary>Is this Markdown to PDF converter free?</summary><p>Yes — 100% free with no paid tier. No signup, no credit card, no watermark and unlimited exports. Every tool on mdtohtml.app works the same way.</p></details>
-  <details><summary>How does the PDF export work?</summary><p>Your markdown is rendered into a themed page and opened in your browser's print dialog — choose "Save as PDF". Everything happens locally; nothing is uploaded.</p></details>
-  <details><summary>Does it support LaTeX math and diagrams?</summary><p>Yes. Inline <code>$...$</code> and block <code>$$...$$</code> equations render with KaTeX, and fenced <code>```mermaid</code> code blocks render as flowcharts, sequence diagrams, Gantt charts and more — in both the live preview and the exported PDF.</p></details>
-  <details><summary>Are tables, code blocks and a table of contents included?</summary><p>Yes. GFM tables, fenced code blocks and task lists render correctly, and a table of contents is added automatically when your document has four or more headings.</p></details>
-  <details><summary>Can I control page size and margins?</summary><p>Yes — the print dialog lets you choose paper size, margins and orientation. The themes are optimized for A4 and US Letter.</p></details>
+  <h2>FAQ</h2>
+  <details><summary>Is this Markdown to PDF converter free?</summary><p>Yes. No signup, no watermark, no page limits on the free tool.</p></details>
+  <details><summary>How does the PDF export work?</summary><p>The PDF PREVIEW pane renders in your browser. Export PDF opens that preview in a print view on your device — choose Save as PDF. Nothing is uploaded.</p></details>
+  <details><summary>Does it support LaTeX math and diagrams?</summary><p>Yes. KaTeX renders inline and block math, Mermaid renders fenced diagram blocks, and GFM tables, code blocks, and an automatic table of contents (when the document has four or more headings) are included in preview and export.</p></details>
+  <details><summary>Can I control page size and margins?</summary><p>This page does not expose separate page-size or margin controls in the toolbar. Default print CSS uses an 18mm page margin. When you click Export PDF, your browser print dialog lets you choose paper size (such as A4 or Letter), margins, and orientation.</p></details>
+  <details><summary>Is my Markdown uploaded?</summary><p>No. Conversion runs locally in the browser.</p></details>
 </section>
 
 <footer>
   <span>© 2026 mdtohtml.app — your markdown never leaves your browser.</span>
   <span>
-    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="../markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="../">Markdown to HTML</a><a href="../html-to-markdown/">HTML to Markdown</a><a href="../pdf-to-markdown/">PDF to Markdown</a><a href="../html-to-pdf/">HTML to PDF</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
+    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="../markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="../">Markdown to HTML</a><a href="../html-to-markdown/">HTML to Markdown</a><a href="../pdf-to-markdown/">PDF to Markdown</a><a href="../html-to-pdf/">HTML to PDF</a><a href="/blog/">Blog</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
   </span>
 </footer>
 

@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /v/
+Disallow: /blog/_template
 
 Sitemap: https://mdtohtml.app/sitemap.xml

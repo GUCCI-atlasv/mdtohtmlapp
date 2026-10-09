@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free URL & HTML to Markdown Converter — No Signup, No Limits | mdtohtml</title>
-<meta name="description" content="Free URL to Markdown and HTML to Markdown converter — paste any web page link and get clean Markdown instantly. No signup, no limits, no watermark. Runs in your browser.">
+<title>HTML to Markdown — Free Converter (Paste or URL) | mdtohtml</title>
+<meta name="description" content="Convert HTML to Markdown in your browser — paste HTML or a page URL for clean Markdown. Free, no signup; pasted HTML stays on your device.">
 <link rel="canonical" href="https://mdtohtml.app/html-to-markdown/">
-<link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<meta property="og:title" content="Free URL & HTML to Markdown Converter">
-<meta property="og:description" content="Paste a link, get clean Markdown. 100% free, no signup, no limits.">
+<meta property="og:title" content="HTML to Markdown — Free Converter (Paste or URL) | mdtohtml">
+<meta property="og:description" content="Convert HTML to Markdown in your browser — paste HTML or a page URL for clean Markdown. Free, no signup; pasted HTML stays on your device.">
 <meta property="og:url" content="https://mdtohtml.app/html-to-markdown/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="mdtohtml.app">
@@ -32,20 +31,22 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "SoftwareApplication", "name": "Free URL & HTML to Markdown Converter — mdtohtml",
+    { "@type": "SoftwareApplication", "name": "HTML to Markdown Converter — mdtohtml",
       "url": "https://mdtohtml.app/html-to-markdown/", "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Any (Web)", "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      "description": "Free converter: paste any web page URL and get clean Markdown. Also converts raw HTML. No signup, no limits." },
-    { "@type": "FAQPage", "mainEntity": [
-      { "@type": "Question", "name": "Is this HTML to Markdown converter free?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free with no paid tier, no signup, no watermark and no usage limits." } },
-      { "@type": "Question", "name": "How do I convert a web page URL to Markdown?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Paste the link into the box and press Convert. The page's main content is extracted and turned into clean GitHub Flavored Markdown." } },
-      { "@type": "Question", "name": "Why can't some pages be converted?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Some sites block cross-origin fetching or require login. The browser extension converts any page you can see, with one click." } },
-      { "@type": "Question", "name": "Is it free and private?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Conversion runs in your browser. Direct fetches never touch our servers; a public fetch-helper is used only when a site blocks direct access." } }
+      "description": "Convert HTML to Markdown in your browser — paste HTML or a page URL for clean Markdown. Free, no signup; pasted HTML stays on your device." },
+        { "@type": "FAQPage", "mainEntity": [
+      { "@type": "Question", "name": "How do I convert a URL to Markdown?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Paste the URL into the box (placeholder: Paste any URL — https://example.com/article) and press Convert. The tool fetches the page, extracts main content, and shows GitHub Flavored Markdown in the MARKDOWN pane." } },
+      { "@type": "Question", "name": "Can I convert raw HTML instead of a URL?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Expand Have raw HTML instead? Paste or upload it here, then paste HTML or use Upload .html. Markdown appears in the adjacent MARKDOWN pane; use Copy Markdown when ready." } },
+      { "@type": "Question", "name": "Why do some pages fail to convert?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Some hosts block automated fetching, require login, show anti-bot walls, or render almost everything in the client after load. The tool tries a direct fetch, then public fetch helpers; if the HTML looks empty or blocked, it opens the paste/upload section and suggests saving the page locally or using the browser extension on the page you can already view." } },
+      { "@type": "Question", "name": "Is it free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. No signup, no watermark." } },
+      { "@type": "Question", "name": "Is it private?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Pasted or uploaded HTML is converted locally in your browser and is not uploaded to mdtohtml for conversion. URL convert fetches the page you asked for — first from your browser, and if that fails, through public fetch helpers (not an mdtohtml upload of your Markdown). Your converted Markdown stays in the page until you copy or download it." } }
     ] }
   ]
 }
@@ -60,13 +61,14 @@
     <a class="nav-text-link" href="../pdf-to-markdown/">PDF → Markdown</a>
     <a class="nav-text-link" href="../markdown-to-pdf/">Markdown → PDF</a>
     <a class="nav-text-link" href="../html-to-pdf/">HTML → PDF</a>
+    <a class="nav-text-link" href="/blog/">Blog</a>
     <button class="mode-toggle" id="modeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
   </div>
 </nav>
 
 <section class="hero" style="padding-bottom:20px">
-  <h1>Any web page in. <em>Clean Markdown</em> out.</h1>
-  <p>Paste a link — article, docs, README, blog post — and get tidy GitHub Flavored Markdown. Free, no signup, no limits.</p>
+  <h1>HTML to Markdown</h1>
+  <p>Convert HTML to Markdown in your browser — paste a page URL or raw HTML for clean GitHub Flavored Markdown. Free, no signup, nothing uploaded for paste conversion.</p>
 
   <div class="urlbar">
     <svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
@@ -79,7 +81,7 @@
     <div class="ext-icon">MD</div>
     <div class="grow">
       <div class="t">Browser extension — convert the page you're on</div>
-      <p>One click on any page, even behind logins. No fetching limits.</p>
+      <p>Convert the page you already have open, including pages behind logins, without relying on remote fetch.</p>
     </div>
     <a class="btn btn-ghost" id="extBtn" href="../extension.zip" download>Download Beta</a>
   </div>
@@ -115,7 +117,7 @@
   <div class="panes" style="min-height:340px">
     <div class="pane" id="inputPane">
       <div class="pane-head">HTML</div>
-      <textarea id="input" spellcheck="false" aria-label="HTML input" placeholder="<h1>Paste HTML here…</h1>"></textarea>
+      <textarea id="input" spellcheck="false" aria-label="HTML input" placeholder="<!-- paste HTML here -->"></textarea>
     </div>
     <div class="pane">
       <div class="pane-head">MARKDOWN</div>
@@ -128,7 +130,16 @@
 </details>
 
 <section class="content">
-  <h2>How to convert a web page to Markdown for free</h2>
+  <h2>What HTML to Markdown means here</h2>
+  <p><strong>HTML to Markdown</strong> on this page means taking messy page HTML — or a public URL — and turning the main content into clean GitHub Flavored Markdown you can edit, commit, or paste into notes. The primary controls sit above: a URL field with placeholder <em>Paste any URL — https://example.com/article</em> and a <strong>Convert</strong> button. Below the fold, <em>Have raw HTML instead? Paste or upload it here</em> opens a paste/upload path with <strong>Upload .html</strong> and side-by-side HTML / MARKDOWN panes.</p>
+  <p>This is the reverse of the homepage <a href="../">Markdown to HTML</a> converter. Use this page when you already have a web article, docs page, or saved HTML file and you want Markdown source. When you later need a printable packet, send Markdown into <a href="../markdown-to-pdf/">Markdown to PDF</a>. For PDFs that already exist as text-layer files, <a href="../pdf-to-markdown/">PDF to Markdown</a> is the better entry point.</p>
+  <p>Output aims for usable GFM: headings, lists, links, images (with absolute URLs when converting from a page), tables, and fenced code where Turndown + GFM plugins can recover them. Scripts, styles, nav, footer, and similar chrome are stripped during extraction so you spend less time deleting site chrome by hand.</p>
+  <p>People search for HTML to Markdown when they want an editable source again: cloning a docs page into a repo, turning a newsletter archive into notes, or feeding cleaner text into another tool. URL convert covers the "I have a link" case. Paste/upload covers the "I already have the HTML" case. Both produce Markdown you can diff, search, and keep offline.</p>
+  <p>The page stays English-only in its default chrome and FAQ copy. Labels you will see repeatedly are <strong>Convert</strong>, <strong>Copy Markdown</strong>, <strong>Download .md</strong>, <strong>Open in Markdown → HTML</strong>, <strong>Upload .html</strong>, and the paste disclosure summary — those are the controls the how-to sections refer to on purpose.</p>
+</section>
+
+<section class="content">
+  <h2>How to convert a URL to Markdown</h2>
   <div class="steps">
     <div class="step">
       <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="h1t">
@@ -172,8 +183,8 @@
           <circle cx="156" cy="109" r="2"/><circle cx="214" cy="109" r="2"/>
         </g>
       </svg>
-      <div class="n">01</div><div class="t">Paste a link</div>
-      <p>Any public article, documentation page, README or blog post.</p>
+      <div class="n">01</div><div class="t">Paste URL → Convert</div>
+      <p>Paste into the URL field and press <strong>Convert</strong>. Works for many public articles, docs, READMEs, and posts.</p>
     </div>
     <div class="step">
       <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="h2t">
@@ -234,8 +245,8 @@
           <text x="200" y="102"><tspan fill="var(--brand,#D97757)">|</tspan><tspan fill="var(--muted,#666666)"> table </tspan><tspan fill="var(--brand,#D97757)">|</tspan></text>
         </g>
       </svg>
-      <div class="n">02</div><div class="t">We extract the content</div>
-      <p>Navigation, ads and scripts are stripped — only the main content is converted.</p>
+      <div class="n">02</div><div class="t">Extract main content</div>
+      <p>Navigation, ads and scripts are stripped — article/main content becomes GitHub Flavored Markdown.</p>
     </div>
     <div class="step">
       <svg class="step-fig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 132" role="img" aria-labelledby="h3t">
@@ -289,26 +300,60 @@
                 fill="var(--text,#000000)">Send to HTML</text>
         </g>
       </svg>
-      <div class="n">03</div><div class="t">Copy or download</div>
-      <p>Clean GFM markdown, ready for your notes, repo or AI prompt.</p>
+      <div class="n">03</div><div class="t">Copy / Download / Open</div>
+      <p>Use <strong>Copy Markdown</strong>, <strong>Download .md</strong>, or <strong>Open in Markdown → HTML</strong>.</p>
     </div>
   </div>
-  <p style="margin-top:18px">Cleaning up unfamiliar syntax? Use the <a href="../markdown-cheatsheet/">Markdown cheat sheet with exact HTML output and common fixes</a> before publishing.</p>
+  <p style="margin-top:18px">Exact UI path: paste the link → press <strong>Convert</strong> → wait for Fetching page… / Converting… status → read the MARKDOWN result → <strong>Copy Markdown</strong>, <strong>Download .md</strong>, or <strong>Open in Markdown → HTML</strong>. Deep links with <code>?url=</code> also run Convert automatically. Cleaning unfamiliar syntax? Use the <a href="../markdown-cheatsheet/">Markdown cheat sheet with exact HTML output and common fixes</a> before publishing.</p>
+</section>
+
+<section class="content">
+  <h2>Paste or upload raw HTML</h2>
+  <p>When a site blocks fetching, or you already saved a page with your browser, expand <strong>Have raw HTML instead? Paste or upload it here ↓</strong>. Use <strong>Upload .html</strong>, paste into the HTML pane, or drag and drop onto that pane. Markdown updates in the adjacent MARKDOWN pane as you paste; use <strong>Copy Markdown</strong> under that section when it looks right.</p>
+  <p>Full saved documents (including pages that contain a root <code>html</code>/<code>body</code> or known content roots such as WeChat’s <code>#js_content</code>) go through the same main-content extraction heuristics used for URL converts, so you often get the article body instead of the entire browser chrome.</p>
+  <p>Paste conversion does not require a network round-trip to mdtohtml. The HTML you typed or uploaded is parsed with Turndown in your browser. That is the path to prefer for private HTML snippets, email exports, and pages you can open but the public web cannot fetch on your behalf.</p>
+</section>
+
+<section class="content">
+  <h2>Why some pages fail to convert</h2>
+  <p>URL convert is best-effort. The live fetcher tries, in order: a direct <code>fetch</code> of the URL from your browser, then public helpers at allorigins and corsproxy. Results that look like captchas, access-denied walls, or nearly empty text are rejected and the next attempt runs. Known hard hosts (for example certain social and paywalled article hosts) skip straight to guidance: save the page locally and upload HTML, or use the browser extension on the page you can already see.</p>
+  <p>Heavy client-rendered apps may return a shell HTML file with little article text. Login walls return HTML you are not authorized to read via anonymous fetch. In those cases the tool cannot invent content it never received. Saving the rendered page from your browser (HTML only) and using the paste/upload section is the honest workaround.</p>
+  <p>We do not claim every URL on the internet converts. We do claim the UI tells you when a fetch failed and points you at paste/upload or the extension instead of silently inventing Markdown.</p>
+</section>
+
+<section class="content">
+  <h2>Cleaning tips for usable Markdown</h2>
+  <p>After Convert, skim headings — extraction may promote the page title as an H1 and keep a Source line. Remove leftover empty links, tracking query strings, and duplicate titles. Wide tables sometimes need a pass in your editor. Code blocks usually survive when the source used semantic <code>pre</code>/<code>code</code>; highly styled span soup may need manual fences.</p>
+  <p>If images are missing, check whether the source used lazy-load attributes; the extractor promotes common <code>data-src</code> patterns when <code>src</code> is empty, but not every CDN pattern is covered. Absolute URLs are applied when a base URL is known from a URL convert.</p>
+  <p>When the Markdown is tidy, you can keep editing locally, open it in <a href="../">Markdown to HTML</a> for a themed page, or export a packet with <a href="../markdown-to-pdf/">Markdown to PDF</a>. For syntax questions, the <a href="../markdown-cheatsheet/">cheat sheet</a> shows exact HTML output for common constructs.</p>
+  <p>A short cleanup checklist that usually pays off: (1) confirm the top heading is the article title you want, (2) delete empty image links, (3) normalize bullet markers if a CMS emitted mixed lists, (4) wrap suspicious indented code in fences, (5) spot-check one table. After that, the file is usually ready for git or for a second pass through Markdown to PDF.</p>
+  <p>If you only needed a reading copy and not editable source, you might prefer HTML to PDF elsewhere on the site — but for long-term notes, Markdown remains easier to merge and search than a stack of saved HTML files.</p>
+</section>
+
+<section class="content">
+  <h2>HTML → Markdown vs Markdown → HTML / PDF</h2>
+  <ul>
+    <li><strong>This page — HTML to Markdown</strong> — URL or HTML in, GFM Markdown out.</li>
+    <li><strong><a href="../">Markdown to HTML</a></strong> — Markdown in, themed HTML out for sharing in a browser.</li>
+    <li><strong><a href="../markdown-to-pdf/">Markdown to PDF</a></strong> — Markdown in, print/PDF out with KaTeX, Mermaid, and themes.</li>
+    <li><strong><a href="../pdf-to-markdown/">PDF to Markdown</a></strong> — Text-layer PDF in, Markdown out (not OCR).</li>
+  </ul>
+  <p>Pick by artifact: scrape and edit as Markdown here; publish as HTML on the homepage; archive or attach as PDF on Markdown to PDF. Keeping Markdown as the editable source avoids locking notes inside a PDF you cannot diff.</p>
 </section>
 
 <section class="content" id="faq">
-  <h2>Frequently asked questions</h2>
-  <details><summary>How do I convert a URL to Markdown?</summary><p>Paste the link in the box above and press Convert. The main content of the page is extracted and converted to GitHub Flavored Markdown — tables, lists, links, images and code included.</p></details>
-  <details><summary>Why do some pages fail to convert?</summary><p>Sites can block cross-origin fetching, sit behind logins, or render everything with JavaScript. For those, use the browser extension — it converts exactly the page you're looking at, with one click.</p></details>
-  <details><summary>Is it really free?</summary><p>Yes — 100% free with no paid tier, no signup, no credit card, no watermark and no daily limits. Every tool on mdtohtml.app works the same way.</p></details>
-  <details><summary>Is it private?</summary><p>Conversion happens in your browser. Pages are fetched directly when the site allows it; when it doesn't, a public fetch-helper relays the page — your converted markdown still never touches our servers.</p></details>
-  <details><summary>Can I convert raw HTML instead of a URL?</summary><p>Yes — expand "Have raw HTML instead?" above the FAQ, then paste or upload your HTML.</p></details>
+  <h2>FAQ</h2>
+  <details><summary>How do I convert a URL to Markdown?</summary><p>Paste the URL into the box (placeholder: Paste any URL — https://example.com/article) and press Convert. The tool fetches the page, extracts main content, and shows GitHub Flavored Markdown in the MARKDOWN pane.</p></details>
+  <details><summary>Can I convert raw HTML instead of a URL?</summary><p>Yes. Expand Have raw HTML instead? Paste or upload it here, then paste HTML or use Upload .html. Markdown appears in the adjacent MARKDOWN pane; use Copy Markdown when ready.</p></details>
+  <details><summary>Why do some pages fail to convert?</summary><p>Some hosts block automated fetching, require login, show anti-bot walls, or render almost everything in the client after load. The tool tries a direct fetch, then public fetch helpers; if the HTML looks empty or blocked, it opens the paste/upload section and suggests saving the page locally or using the browser extension on the page you can already view.</p></details>
+  <details><summary>Is it free?</summary><p>Yes. No signup, no watermark.</p></details>
+  <details><summary>Is it private?</summary><p>Pasted or uploaded HTML is converted locally in your browser and is not uploaded to mdtohtml for conversion. URL convert fetches the page you asked for — first from your browser, and if that fails, through public fetch helpers (not an mdtohtml upload of your Markdown). Your converted Markdown stays in the page until you copy or download it.</p></details>
 </section>
 
 <footer>
-  <span>© 2026 mdtohtml.app — your content never leaves your browser.</span>
+  <span>© 2026 mdtohtml.app — pasted HTML stays on your device.</span>
   <span>
-    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="../markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="../">Markdown to HTML</a><a href="../pdf-to-markdown/">PDF to Markdown</a><a href="../markdown-to-pdf/">Markdown to PDF</a><a href="../html-to-pdf/">HTML to PDF</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
+    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/feedback/">Feedback</a><a href="../markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="../">Markdown to HTML</a><a href="../pdf-to-markdown/">PDF to Markdown</a><a href="../markdown-to-pdf/">Markdown to PDF</a><a href="../html-to-pdf/">HTML to PDF</a><a href="/blog/">Blog</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
   </span>
 </footer>
 

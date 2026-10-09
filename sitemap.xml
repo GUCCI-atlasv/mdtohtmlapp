@@ -46,4 +46,21 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://mdtohtml.app/blog/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mdtohtml.app/blog/how-to-convert-pdf-to-markdown</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Article template (not a public post; do not add a <loc>): /blog/_template.html
+       Public URL after .html strip: https://mdtohtml.app/blog/_template
+       Kobe: copy to /blog/<slug>.html (live URL /blog/<slug>), add <loc>https://mdtohtml.app/blog/<slug></loc>,
+       and a card between POSTS markers on /blog/index.html.
+       Content type: one ChatGPT question → answer. No brand/game/downloader SEO wording. -->
 </urlset>
