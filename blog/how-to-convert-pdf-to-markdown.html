@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How do I convert a PDF to Markdown? | mdtohtml</title>
+<meta name="description" content="If the PDF has a real text layer, extract that text into Markdown. A scanned page has no text to extract.">
+<link rel="canonical" href="https://mdtohtml.app/blog/how-to-convert-pdf-to-markdown">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="How do I convert a PDF to Markdown? | mdtohtml">
+<meta property="og:description" content="If the PDF has a real text layer, extract that text into Markdown. A scanned page has no text to extract.">
+<meta property="og:url" content="https://mdtohtml.app/blog/how-to-convert-pdf-to-markdown">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mdtohtml.app">
+<meta property="og:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mdtohtml.app/assets/og-card.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=1f53051d82">
+<script defer src="https://ccc-monitor.583079497.workers.dev/beacon.js" data-site="mdtohtml.app"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How do I convert a PDF to Markdown?","datePublished":"2026-10-04","dateModified":"2026-10-04","author":{"@type":"Organization","name":"mdtohtml","url":"https://mdtohtml.app/"},"mainEntityOfPage":"https://mdtohtml.app/blog/how-to-convert-pdf-to-markdown"}</script>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/"><span class="mark">HTML</span>mdtohtml</a>
+  <div class="nav-right">
+    <a href="/">Markdown → HTML</a>
+    <a href="/html-to-markdown/">HTML → Markdown</a>
+    <a href="/pdf-to-markdown/">PDF → Markdown</a>
+    <a href="/markdown-to-pdf/">Markdown → PDF</a>
+    <a href="/html-to-pdf/">HTML → PDF</a>
+    <a class="nav-text-link" href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<section class="content" style="margin-top:48px">
+  <h1>How do I convert a PDF to Markdown?</h1>
+  <p><em>Published 2026-10-04</em></p>
+  <p><strong>Short answer:</strong> If the PDF has a real text layer, pull that text out and write it as Markdown headings and paragraphs. If the PDF is a scan or a photo of a page, there is no text to pull out, and this will not read it.</p>
+  <figure>
+    <!-- IMAGE: Paul — before/after, one picture.
+         File: /blog/how-to-convert-pdf-to-markdown.png (or .webp), about 1200×675.
+         Left: a PDF page with a selectable heading and paragraph (text cursor, not a photo of paper).
+         Right: the same heading as a Markdown # line and the paragraph under it.
+         Small corner note: a scanned page is only a picture and is out of scope. No brand logos. -->
+    <img src="/blog/how-to-convert-pdf-to-markdown.png" width="1200" height="675" alt="A text PDF page beside the same heading and paragraph written as Markdown.">
+    <figcaption>Only a PDF you can select text in can become Markdown. A scan is a picture, and this step does not read it.</figcaption>
+  </figure>
+  <h2>Why a PDF does not paste as Markdown</h2>
+  <p>A text PDF stores each character with a position on the page. It does not store headings or lists. Paste it into a doc and you get one flat block. To get Markdown, mark headings with <code>#</code> and split the rest into paragraphs and lists.</p>
+  <p>A scanned PDF is only a picture. Reading it needs OCR, which this tool does not do. Use a PDF you can already select text in.</p>
+  <h2>What to do</h2>
+  <ol>
+    <li>Open <a href="/pdf-to-markdown/">PDF to Markdown</a> and drop the file in. It stays in your browser and is not uploaded.</li>
+    <li>Check the preview. Headings and paragraphs come from the text layer only.</li>
+    <li>Copy the Markdown or download the <code>.md</code> file.</li>
+  </ol>
+  <p><a href="/pdf-to-markdown/">PDF to Markdown</a> · <a href="/html-to-markdown/">HTML to Markdown</a> · <a href="/markdown-cheatsheet/">Cheat sheet</a> · <a href="/blog/">All posts</a></p>
+</section>
+
+<footer>
+  <span>© 2026 mdtohtml.app — your markdown never leaves your browser.</span>
+  <span>
+    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="/blog/">Blog</a><a href="/feedback/">Feedback</a><a href="/markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
+  </span>
+</footer>
+<style>
+.blog-list{list-style:none;padding:0;margin:28px 0}
+.blog-list li{padding:16px 0;border-top:1px solid var(--border, rgba(127,127,127,.25))}
+.blog-list a{color:var(--text);font-weight:650;text-decoration:none}
+.blog-list time{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.blog-empty{padding:16px 18px;border:1px dashed var(--border, rgba(127,127,127,.45));border-radius:12px;color:var(--muted)}
+</style>
+</body>
+</html>

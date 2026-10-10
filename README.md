@@ -64,8 +64,11 @@ Edit `content/cheatsheet.json` for cheatsheet copy — never hand-edit the gener
 
 ```bash
 npm run check
-npx wrangler pages deploy . --project-name=mdtohtml --branch=main --commit-dirty=true
+./scripts-deploy-clean.sh   # deploys only public files from /workspace/mdtohtml-deploy
 ```
+
+Never `wrangler pages deploy .` from the repo root — it publishes docs/, README, tests, package.json.
+`functions/_middleware.js` also hard-404s internal paths (Pages keeps serving removed files ~7 days).
 
 Or connect the repo to Cloudflare Pages / Vercel / Netlify and set the build command to `npm run build`.
 
