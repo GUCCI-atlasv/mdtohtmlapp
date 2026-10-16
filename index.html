@@ -53,7 +53,9 @@
         { "@type": "Question", "name": "What's the difference between the HTML fragment and the styled page?",
           "acceptedAnswer": { "@type": "Answer", "text": "The fragment is clean semantic HTML for pasting into a CMS or email. The styled page is a complete self-contained HTML document with inline CSS, table of contents and dark mode — ready to open or share." } },
         { "@type": "Question", "name": "Does it support GitHub Flavored Markdown?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes — tables, task lists, strikethrough, fenced code blocks and autolinks are supported." } }
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — tables, task lists, strikethrough, fenced code blocks and autolinks are supported." } },
+        { "@type": "Question", "name": "Does it render Mermaid diagrams?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — mermaid code blocks are drawn as diagrams in the styled page. To fix a diagram that will not render, or to export it as SVG or PNG, use the free Mermaid tools on our sister site openmdfile.com." } }
       ]
     }
   ]
@@ -320,6 +322,7 @@
   <details><summary>Is my markdown uploaded to a server?</summary><p>No. Conversion happens entirely in your browser. Share links compress your document into the URL itself (after the #), which browsers never send to any server.</p></details>
   <details><summary>What's the difference between "Copy HTML" and "Copy styled page"?</summary><p>Copy HTML gives you a clean semantic fragment (no classes, no styles) for pasting into a CMS, blog or email tool. Copy styled page / Download gives you a complete self-contained HTML document with inline CSS, a table of contents and dark mode.</p></details>
   <details><summary>Does it support GitHub Flavored Markdown?</summary><p>Yes — tables, task lists, strikethrough, fenced code blocks and autolinks all convert correctly.</p></details>
+  <details><summary>Does it render Mermaid diagrams?</summary><p>Yes — <code>```mermaid</code> code blocks are drawn as diagrams in the styled page. If a diagram from ChatGPT or Claude will not render, run it through the <a href="https://openmdfile.com/fix-mermaid-syntax/">Mermaid syntax fixer</a>; to preview it or export it as SVG or PNG, use the <a href="https://openmdfile.com/mermaid-viewer/">Mermaid viewer</a> on our sister site openmdfile.com.</p></details>
   <details><summary>How do temporary share pages work?</summary><p>Instant links pack your compressed document into the link fragment, so the page renders anywhere without a server and never expires. Documents up to about 30,000 characters fit in a link; for longer ones, download the styled HTML page and share the file.</p></details>
 </section>
 
@@ -349,7 +352,7 @@
 <footer>
   <span>© 2026 mdtohtml.app — your markdown never leaves your browser.</span>
   <span>
-    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="feedback/">Feedback</a><a href="markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="html-to-markdown/">HTML to Markdown</a><a href="pdf-to-markdown/">PDF to Markdown</a><a href="markdown-to-pdf/">Markdown to PDF</a><a href="html-to-pdf/">HTML to PDF</a><a href="#faq">FAQ</a><a href="/blog/">Blog</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
+    <a href="mailto:support@mdtohtml.app">support@mdtohtml.app</a><a href="feedback/">Feedback</a><a href="markdown-cheatsheet/">Markdown Cheat Sheet</a><a href="html-to-markdown/">HTML to Markdown</a><a href="pdf-to-markdown/">PDF to Markdown</a><a href="markdown-to-pdf/">Markdown to PDF</a><a href="html-to-pdf/">HTML to PDF</a><a href="https://openmdfile.com/mermaid-viewer/">Mermaid viewer</a><a href="#faq">FAQ</a><a href="/blog/">Blog</a><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a>
   </span>
 </footer>
 
